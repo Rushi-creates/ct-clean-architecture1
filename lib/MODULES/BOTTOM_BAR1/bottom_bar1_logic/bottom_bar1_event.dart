@@ -7,8 +7,9 @@ abstract class BottomBar1Event extends Equatable {
   List<Object> get props => [];
 }
 
-class BottomBar1_OneCLicked_Event extends BottomBar1Event {}
-
-class BottomBar1_TwoCLicked_Event extends BottomBar1Event {}
-
-class BottomBar1_ThreeCLicked_Event extends BottomBar1Event {}
+class BottomBar1CLickedEvent extends BottomBar1Event {
+  final int index;
+  const BottomBar1CLickedEvent(this.index);
+  @override
+  List<Object> get props => [index];
+}

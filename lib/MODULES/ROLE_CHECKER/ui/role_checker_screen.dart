@@ -1,4 +1,4 @@
-import 'package:ct_single_post/MODULES/BOTTOM_BAR1/bottom_bar1_widget.dart';
+import 'package:ct_single_post/MODULES/BOTTOM_BAR1/ui/bottom_bar1_widget.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/ui/create_profile_screen.dart';
 import 'package:ct_single_post/MODULES/REGISTER/ui/register_screen.dart';
 import 'package:ct_single_post/MODULES/ROLE_CHECKER/logic/role_checker_logic/role_checker_bloc.dart';

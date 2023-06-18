@@ -7,10 +7,9 @@ abstract class BottomBar1State extends Equatable {
   List<Object> get props => [];
 }
 
-class BottomBar1Initial extends BottomBar1State {}
-
-class BottomBar1_openOne_State extends BottomBar1State {}
-
-class BottomBar1_openTwo_State extends BottomBar1State {}
-
-class BottomBar1_openThree_State extends BottomBar1State {}
+class BottomBar1TileSelectedState extends BottomBar1State {
+  final int index;
+  const BottomBar1TileSelectedState(this.index);
+  @override
+  List<Object> get props => [index];
+}

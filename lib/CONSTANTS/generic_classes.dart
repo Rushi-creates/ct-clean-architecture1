@@ -1,1 +1,1 @@
-// class GRegisterButton {}
+class GCreatePostChip {}
