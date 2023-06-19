@@ -1,7 +1,12 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  final String heading;
+  const Home({
+    Key? key,
+    required this.heading,
+  }) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
@@ -33,9 +38,9 @@ class _HomeState extends State<Home> {
 /* -------------------------------------------------------------------------- */
 
   structure() {
-    return const SafeArea(
+    return SafeArea(
       child: Center(
-        child: Text('Hello world'),
+        child: Text(widget.heading),
       ),
     );
   }
@@ -63,9 +68,9 @@ class _HomeState extends State<Home> {
       // ),
       // automaticallyImplyLeading: true,  //removes default back arrow on appbar
 
-      title: const Text(
-        'Home', //give here appBar title
-        style: TextStyle(color: Colors.black
+      title: Text(
+        widget.heading, //give here appBar title
+        style: const TextStyle(color: Colors.black
             // fontWeight: FontWeight.bold
             // fontSize: 15,
             ),

@@ -2,6 +2,7 @@ class ImagePaths {
   //
   static const String peopleCards = 'images/people_cards.png';
   static const String googleLogo = 'images/google_logo.png';
+  static const String searchIcon = 'images/search_icon.png';
 
   // trend chips
   static const String songChipIcon = 'images/song_chip_icon.png';

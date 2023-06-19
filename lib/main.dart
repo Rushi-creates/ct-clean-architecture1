@@ -1,4 +1,5 @@
-import 'package:ct_single_post/MODULES/BOTTOM_BAR1/bottom_bar1_logic/bottom_bar1_bloc.dart';
+import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
+import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_button_logic/create_profile_button_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/cubit/create_profile_cubit.dart';
 import 'package:ct_single_post/MODULES/REGISTER/logic/register_button_logic/register_button_bloc.dart';
@@ -53,13 +54,17 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<CreateProfileCubit>(
             create: (context) => CreateProfileCubit()),
 
+        BlocProvider<ChipsCubit<GBottomBar>>(
+            create: (context) => ChipsCubit<GBottomBar>(0)),
+        BlocProvider<ChipsCubit<GCreatePostChips>>(
+            create: (context) => ChipsCubit<GCreatePostChips>(0)),
+
         //@ BLOCS
         BlocProvider<RoleCheckerBloc>(create: (context) => RoleCheckerBloc()),
         BlocProvider<RegisterButtonBloc>(
             create: (context) => RegisterButtonBloc()),
         BlocProvider<CreateProfileButtonBloc>(
             create: (context) => CreateProfileButtonBloc()),
-        BlocProvider<BottomBar1Bloc>(create: (context) => BottomBar1Bloc()),
       ],
 
 /* -------------------------------------------------------------------------- */

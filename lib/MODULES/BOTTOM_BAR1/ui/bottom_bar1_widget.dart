@@ -1,10 +1,13 @@
+import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:ct_single_post/MODULES/BOTTOM_BAR1/ui/expandable_fab_widget.dart';
+import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
+import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/ui/chip_widget.dart';
 import 'package:ct_single_post/MODULES/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
-import '../bottom_bar1_logic/bottom_bar1_bloc.dart';
+import '../../CREATE_POST/ui/create_post_screen.dart';
 
 class Bottombar1Widget extends StatefulWidget {
   const Bottombar1Widget({super.key});
@@ -21,17 +24,20 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: myBody(),
-      // resizeToAvoidBottomInset: true,
+        backgroundColor: Colors.white,
+        body: myBody(),
+        // resizeToAvoidBottomInset: true,
 
 /* -------------------------------------------------------------------------- */
 /*                             //! Expandable fab                             */
 /* -------------------------------------------------------------------------- */
 
-      floatingActionButtonLocation: ExpandableFab.location, // location imp
-      floatingActionButton: const ExpandableFabWidget(),
-    );
+        floatingActionButtonLocation: ExpandableFab.location, // location imp
+        floatingActionButton: const ChipWidget<GBottomBar>(
+          index: 2,
+          // activeWidget: ExpandableFabWidget(),
+          nonActiveWidget: ExpandableFabWidget(),
+        ));
   }
 
 /* -------------------------------------------------------------------------- */
@@ -81,26 +87,39 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
                 //
 
                 const VerticalDivider(width: 40, color: Colors.white),
-                homeIconStates(),
+
+//
+                ChipWidget<GBottomBar>(
+                    index: 0,
+                    activeWidget: myIcon(Icons.home, Colors.blue[900]),
+                    nonActiveWidget: myIcon(Icons.home_outlined, Colors.grey)),
                 const VerticalDivider(color: Colors.white, width: 40),
-                profileIconStates()
+
+//
+
+                ChipWidget<GBottomBar>(
+                    index: 1,
+                    activeWidget: myIcon(Icons.person, Colors.blue[900]),
+                    nonActiveWidget: myIcon(Icons.person_outline, Colors.grey)),
+                const VerticalDivider(color: Colors.white, width: 40),
+
+//
+
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.home, color: Colors.transparent),
+                )
               ]),
         ));
   }
 
-  myIcon(IconData icon, int index, [bool isSelected = false]) {
+  myIcon(IconData icon, Color? color) {
     return FittedBox(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: IconButton(
-          icon: Icon(
-            Icons.home,
-            color: isSelected ? Colors.blue[900] : Colors.grey,
-          ),
-          onPressed: () {
-            BlocProvider.of<BottomBar1Bloc>(context)
-                .add(BottomBar1CLickedEvent(index));
-          },
+        child: Icon(
+          icon,
+          color: color,
         ),
       ),
     );
@@ -111,44 +130,21 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
 /* -------------------------------------------------------------------------- */
 
   displayWhichScreenStates() {
-    return BlocBuilder<BottomBar1Bloc, BottomBar1State>(
-        builder: (context, state) {
-      if (state is BottomBar1TileSelectedState) {
-        if (state.index == 0) {
-          return const Home();
-        } else if (state.index == 1) {
-          return const Home();
-        } else if (state.index == 2) {
-          return const Home();
-        }
+    return BlocBuilder<ChipsCubit<GBottomBar>, int?>(builder: (context, state) {
+      if (state == 0) {
+        return const Home(
+          heading: 'home',
+        );
+      } else if (state == 1) {
+        return const Home(
+          heading: 'profile',
+        );
+      } else if (state == 2) {
+        return const CreatePostScreen();
       }
-      return const Home(); // initial
+      return const Home(
+        heading: 'Home',
+      );
     });
-  }
-
-  homeIconStates() {
-    return BlocBuilder<BottomBar1Bloc, BottomBar1State>(
-      builder: (context, state) {
-        if (state is BottomBar1TileSelectedState) {
-          return state.index == 0
-              ? myIcon(Icons.home, 0, true)
-              : myIcon(Icons.home_outlined, 0);
-        }
-        return Container();
-      },
-    );
-  }
-
-  profileIconStates() {
-    return BlocBuilder<BottomBar1Bloc, BottomBar1State>(
-      builder: (context, state) {
-        if (state is BottomBar1TileSelectedState) {
-          return state.index == 1
-              ? myIcon(Icons.person, 1, true)
-              : myIcon(Icons.person_2_outlined, 1);
-        }
-        return Container();
-      },
-    );
   }
 }
