@@ -1,5 +1,12 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/Movies_tab/movies_fetch_logic/movies_fetch_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/MyPost_cud_logic/MyPost_cud_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/Series_tab/series_fetch_logic/series_fetch_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/Songs_tab/songs_fetch_logic/songs_fetch_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/Songs_tab/trending_songs_fetch_logic/trending_songs_fetch_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/Youtube_tab/youtube_fetch_logic/youtube_fetch_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/logic/trend_selection_logic/trend_selection_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_button_logic/create_profile_button_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/cubit/create_profile_cubit.dart';
 import 'package:ct_single_post/MODULES/REGISTER/logic/register_button_logic/register_button_bloc.dart';
@@ -8,6 +15,9 @@ import 'package:ct_single_post/MODULES/SPLASH/splash__screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'API_HELPER/api_services/shared_preferences_helper.dart';
+import 'MODULES/CREATE_POST/logic/Movies_tab/trending_movies_fetch_logic/trending_movies_fetch_bloc.dart';
+import 'MODULES/CREATE_POST/logic/Series_tab/trending_series_fetch_logic/trending_series_fetch_bloc.dart';
+import 'MODULES/CREATE_POST/logic/Youtube_tab/trending_youtube_fetch_logic/trending_youtube_fetch_bloc.dart';
 // import 'SERIALIZERS/repositories/drf_api/profile_repo.dart';
 // import 'SERIALIZERS/repositories/drf_api/user_repo.dart';
 // import 'SERIALIZERS/repositories/other_api/google_auth_repo.dart';
@@ -65,6 +75,31 @@ class _MyAppState extends State<MyApp> {
             create: (context) => RegisterButtonBloc()),
         BlocProvider<CreateProfileButtonBloc>(
             create: (context) => CreateProfileButtonBloc()),
+
+        BlocProvider<TrendSelectionBloc<GSong>>(
+            create: (context) => TrendSelectionBloc<GSong>()),
+        BlocProvider<TrendSelectionBloc<GMovie>>(
+            create: (context) => TrendSelectionBloc<GMovie>()),
+        BlocProvider<TrendSelectionBloc<GYoutube>>(
+            create: (context) => TrendSelectionBloc<GYoutube>()),
+        BlocProvider<TrendSelectionBloc<GSeries>>(
+            create: (context) => TrendSelectionBloc<GSeries>()),
+
+        BlocProvider<SongsFetchBloc>(create: (context) => SongsFetchBloc()),
+        BlocProvider<MoviesFetchBloc>(create: (context) => MoviesFetchBloc()),
+        BlocProvider<YoutubeFetchBloc>(create: (context) => YoutubeFetchBloc()),
+        BlocProvider<SeriesFetchBloc>(create: (context) => SeriesFetchBloc()),
+
+        BlocProvider<TrendingSongsFetchBloc>(
+            create: (context) => TrendingSongsFetchBloc()),
+        BlocProvider<TrendingMoviesFetchBloc>(
+            create: (context) => TrendingMoviesFetchBloc()),
+        BlocProvider<TrendingYoutubeFetchBloc>(
+            create: (context) => TrendingYoutubeFetchBloc()),
+        BlocProvider<TrendingSeriesFetchBloc>(
+            create: (context) => TrendingSeriesFetchBloc()),
+
+        BlocProvider<MyPostCudBloc>(create: (context) => MyPostCudBloc()),
       ],
 
 /* -------------------------------------------------------------------------- */

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:ct_single_post/SERIALIZERS/repositories/other_api/movies_repo.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../API_HELPER/exceptions/exceptions.dart';
-import '../../../../../SERIALIZERS/repositories/drf_api/Movies_repo.dart';
 
 part 'movies_fetch_event.dart';
 part 'movies_fetch_state.dart';

@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:ct_single_post/SERIALIZERS/repositories/other_api/series_repo.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../API_HELPER/exceptions/exceptions.dart';
-import '../../../../../SERIALIZERS/repositories/drf_api/Series_repo.dart';
 
 part 'trending_series_fetch_event.dart';
 part 'trending_series_fetch_state.dart';

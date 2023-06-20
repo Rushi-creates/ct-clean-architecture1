@@ -1,4 +1,4 @@
-import 'package:ct_single_post/MODULES/CREATE_POST/ui/FORM/carousel_slider_widget.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/ui/SCREEN/create_post_states_widget.dart';
 import 'package:ct_single_post/MODULES/CREATE_POST/ui/four_chips_row_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +31,7 @@ class CreatePostScreen extends StatelessWidget {
           children: [
             const FourChipsRowWidget(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-            const CarouselSliderWidget(),
+            const CreatePostStatesWidget(),
             SizedBox(height: MediaQuery.of(context).size.height * 0.005),
           ],
         ),
@@ -47,6 +47,7 @@ class CreatePostScreen extends StatelessWidget {
     return AppBar(
       backgroundColor: Colors.white,
       centerTitle: true,
+      automaticallyImplyLeading: false,
       elevation: 0.0,
       title: const Column(
         children: [

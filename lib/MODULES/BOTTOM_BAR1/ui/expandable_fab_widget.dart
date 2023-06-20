@@ -89,14 +89,14 @@ class ExpandableFabWidget extends StatelessWidget {
             index: 2,
             activeWidget: CommonCircleChipChildWidget(
                 index: 2,
-                label: 'Series',
+                label: 'Youtube',
                 color1: Color(0xffFFD199),
                 color2: Color(0xffFEB25A),
                 boxShadowColor: Color.fromRGBO(255, 190, 113, 0.7),
                 iconPath: ImagePaths.seriesChipIcon),
             nonActiveWidget: CommonCircleChipChildWidget(
                 index: 2,
-                label: 'Series',
+                label: 'Youtube',
                 color1: Colors.white,
                 color2: Colors.white,
                 boxShadowColor: Color.fromARGB(255, 192, 192, 192),
@@ -108,14 +108,14 @@ class ExpandableFabWidget extends StatelessWidget {
             index: 3,
             activeWidget: CommonCircleChipChildWidget(
                 index: 3,
-                label: 'Youtube',
+                label: 'Series',
                 color1: const Color(0xff5FF8D5),
                 color2: const Color(0xff33DCB4),
                 boxShadowColor: const Color(0xff5FF8D5).withOpacity(0.4),
                 iconPath: ImagePaths.youtubeChipIcon),
             nonActiveWidget: const CommonCircleChipChildWidget(
                 index: 3,
-                label: 'Youtube',
+                label: 'Series',
                 color1: Colors.white,
                 color2: Colors.white,
                 boxShadowColor: Color.fromARGB(255, 192, 192, 192),

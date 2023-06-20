@@ -13,7 +13,7 @@ class YoutubeEndpoints {
   static const String _query = "&q=";
   static const String _query_id = "&id=";
 
-  static const String _paginate4 = "&maxResults=6";
+  // static const String _paginate4 = "&maxResults=6";
 
   //
   static const String searchYtVideos_ById_url =
@@ -27,13 +27,17 @@ class YoutubeEndpoints {
       _part +
       _query;
 
-  static const String searchYt_trendingVideos_url = _domainUrl +
-      _subUrl_searchVideos +
-      _apiKey +
-      _paginate4 +
-      _type +
-      _part +
-      _query;
+  // static const String searchYt_trendingVideos_url = _domainUrl +
+  //     _subUrl_searchVideos +
+  //     _apiKey +
+  //     _paginate4 +
+  //     _type +
+  //     _part +
+  //     _query;
+
+  static const String searchYt_trendingVideos_url =
+      'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=6&regionCode=IN&safeSearch=strict&key=AIzaSyB9zp-0FrbZ4UR-VGodZCZI6s75YyVIF_s';
+  // 'https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=6&safeSearch=strict&key=AIzaSyB9zp-0FrbZ4UR-VGodZCZI6s75YyVIF_s';
 }
 
 

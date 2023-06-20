@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../API_HELPER/exceptions/exceptions.dart';
-import '../../../../../SERIALIZERS/repositories/drf_api/Songs_repo.dart';
+import '../../../../../SERIALIZERS/repositories/other_api/songs_repo.dart';
 
 part 'trending_songs_fetch_event.dart';
 part 'trending_songs_fetch_state.dart';

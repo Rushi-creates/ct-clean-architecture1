@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../API_HELPER/exceptions/exceptions.dart';
-import '../../../../../SERIALIZERS/repositories/drf_api/youtube_repo.dart';
+import '../../../../../SERIALIZERS/repositories/other_api/youtube_repo.dart';
 
 part 'youtube_fetch_event.dart';
 part 'youtube_fetch_state.dart';

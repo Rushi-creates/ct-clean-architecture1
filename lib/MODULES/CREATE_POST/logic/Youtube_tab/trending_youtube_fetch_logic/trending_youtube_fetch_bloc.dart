@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../../API_HELPER/exceptions/exceptions.dart';
-import '../../../../../SERIALIZERS/repositories/drf_api/youtube_repo.dart';
+import '../../../../../SERIALIZERS/repositories/other_api/youtube_repo.dart';
 
 part 'trending_youtube_fetch_event.dart';
 part 'trending_youtube_fetch_state.dart';
@@ -21,7 +21,9 @@ class TrendingYoutubeFetchBloc
         final moreFetchedList =
             await youtube_api_repo.fetchProp_trendingYoutube();
 
-        print(moreFetchedList);
+        print('reached trend yt bloc');
+
+        // print(moreFetchedList);
         // final List moreFetchedList =
         //     await queues_Api_Repo.fetchAll(newCounter);
 

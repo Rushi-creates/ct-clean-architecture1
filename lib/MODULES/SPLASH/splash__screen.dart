@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 
+import '../CREATE_POST/logic/Movies_tab/trending_movies_fetch_logic/trending_movies_fetch_bloc.dart';
+import '../CREATE_POST/logic/Series_tab/trending_series_fetch_logic/trending_series_fetch_bloc.dart';
+import '../CREATE_POST/logic/Songs_tab/trending_songs_fetch_logic/trending_songs_fetch_bloc.dart';
+import '../CREATE_POST/logic/Youtube_tab/trending_youtube_fetch_logic/trending_youtube_fetch_bloc.dart';
 import '../ROLE_CHECKER/ui/role_checker_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,6 +19,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    callBlocs();
 
     Future.delayed(const Duration(milliseconds: 2000), () {
       Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -58,5 +64,16 @@ class SplashScreenState extends State<SplashScreen> {
         ],
       ),
     );
+  }
+
+  callBlocs() {
+    BlocProvider.of<TrendingSongsFetchBloc>(context)
+        .add(FetchTrendingSongs_Event());
+    BlocProvider.of<TrendingYoutubeFetchBloc>(context)
+        .add(FetchTrendingYoutube_Event());
+    BlocProvider.of<TrendingMoviesFetchBloc>(context)
+        .add(FetchTrendingMovies_Event());
+    BlocProvider.of<TrendingSeriesFetchBloc>(context)
+        .add(FetchTrendingSeries_Event());
   }
 }

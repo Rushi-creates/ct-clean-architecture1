@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
-import '../../CREATE_POST/ui/create_post_screen.dart';
+import '../../CREATE_POST/ui/SCREEN/create_post_screen.dart';
 
 class Bottombar1Widget extends StatefulWidget {
   const Bottombar1Widget({super.key});
@@ -132,19 +132,13 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
   displayWhichScreenStates() {
     return BlocBuilder<ChipsCubit<GBottomBar>, int?>(builder: (context, state) {
       if (state == 0) {
-        return const Home(
-          heading: 'home',
-        );
+        return const Home(heading: 'home');
       } else if (state == 1) {
-        return const Home(
-          heading: 'profile',
-        );
+        return const Home(heading: 'profile');
       } else if (state == 2) {
         return const CreatePostScreen();
       }
-      return const Home(
-        heading: 'Home',
-      );
+      return const Home(heading: 'Home');
     });
   }
 }

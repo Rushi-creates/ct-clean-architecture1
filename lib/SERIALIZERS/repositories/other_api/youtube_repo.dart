@@ -1,7 +1,10 @@
+import 'package:ct_single_post/SERIALIZERS/models/youtube_trend_model.dart';
+// import 'package:flutter/material.dart';
+
 import '../../../API_HELPER/api_services/movies_db_helper.dart';
 import '../../../CONSTANTS/api_endpoints/youtube_api_endpoints.dart';
-import '../../models/YoutubeSingleResult.dart';
 import '../../models/youtube.dart';
+import '../../models/youtube_single_result.dart';
 
 class Yt_api_repo {
 /* -------------------------------------------------------------------------- */
@@ -23,9 +26,12 @@ class Yt_api_repo {
   }
 
   fetchProp_trendingYoutube() async {
-    var rawData = await _provider
-        .fetch(YoutubeEndpoints.searchYt_trendingVideos_url + 'trending');
-    return YoutubeModel.fromJson(rawData);
+    var rawData =
+        await _provider.fetch(YoutubeEndpoints.searchYt_trendingVideos_url
+            //  + 'trend',
+            );
+    print('from yt reo');
+    return YoutubeTrendModel.fromMap(rawData);
   }
 
   fetchYoutube_byId(String id) async {
