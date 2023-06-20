@@ -1,9 +1,9 @@
-import 'package:ct_single_post/MODULES/CREATE_POST/logic/trend_selection_logic/trend_selection_bloc.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/ui/FORM/create_post_form_states_widget/trend_selection_logic/trend_selection_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_POST/ui/FORM/create_post_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../CONSTANTS/generic_classes.dart';
+import '../../../../../CONSTANTS/generic_classes.dart';
 
 class CreatePostFormStatesWidget<T> extends StatelessWidget {
   const CreatePostFormStatesWidget({super.key});

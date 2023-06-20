@@ -2,11 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/CONSTANTS/api_endpoints/tmdb_movie_endpoints.dart';
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/date_picker_widget.dart';
-import 'package:ct_single_post/MODULES/CREATE_POST/logic/trend_selection_logic/trend_selection_bloc.dart';
-import 'package:ct_single_post/MODULES/CREATE_POST/ui/FORM/create_post_button_widget.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/ui/FORM/create_post_button_widget/create_post_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'create_post_form_states_widget/trend_selection_logic/trend_selection_bloc.dart';
 
 class CreatePostFormWidget<T> extends StatefulWidget {
   final trend;

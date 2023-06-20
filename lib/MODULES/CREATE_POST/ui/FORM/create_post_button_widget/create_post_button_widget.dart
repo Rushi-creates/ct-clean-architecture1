@@ -4,9 +4,9 @@ import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../CONSTANTS/generic_classes.dart';
-import '../../../../SERIALIZERS/models/my_post.dart';
-import '../../logic/MyPost_cud_logic/MyPost_cud_bloc.dart';
+import '../../../../../CONSTANTS/generic_classes.dart';
+import '../../../../../SERIALIZERS/models/my_post.dart';
+import 'MyPost_cud_logic/MyPost_cud_bloc.dart';
 
 class CreatePostButtonWidget<T> extends StatelessWidget {
   final headingText;

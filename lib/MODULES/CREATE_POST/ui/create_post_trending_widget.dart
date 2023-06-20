@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/CONSTANTS/api_endpoints/tmdb_movie_endpoints.dart';
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
-import 'package:ct_single_post/MODULES/CREATE_POST/logic/trend_selection_logic/trend_selection_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +9,7 @@ import '../logic/Movies_tab/trending_movies_fetch_logic/trending_movies_fetch_bl
 import '../logic/Series_tab/trending_series_fetch_logic/trending_series_fetch_bloc.dart';
 import '../logic/Songs_tab/trending_songs_fetch_logic/trending_songs_fetch_bloc.dart';
 import '../logic/Youtube_tab/trending_youtube_fetch_logic/trending_youtube_fetch_bloc.dart';
+import 'FORM/create_post_form_states_widget/trend_selection_logic/trend_selection_bloc.dart';
 
 class CreatePostTrendingWidget<T> extends StatelessWidget {
   const CreatePostTrendingWidget({super.key});

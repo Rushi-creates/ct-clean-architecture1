@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
-import '../FORM/create_post_form_states_widget.dart';
+import '../FORM/create_post_form_states_widget/create_post_form_states_widget.dart';
 import '../SEARCHBAR/create_post_searchbar_widget.dart';
 
 class CreatePostStatesWidget extends StatelessWidget {

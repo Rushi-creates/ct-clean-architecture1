@@ -1,8 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:ct_single_post/API_HELPER/exceptions/exceptions.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/my_post_repo.dart';
 import 'package:equatable/equatable.dart';
-
-import '../../../../API_HELPER/exceptions/exceptions.dart';
 
 part 'MyPost_cud_event.dart';
 part 'MyPost_cud_state.dart';
@@ -22,6 +21,7 @@ class MyPostCudBloc extends Bloc<MyPostCudEvent, MyPostCudState> {
       try {
         //# from api repo
         var response = await MyPostRepo.instance.create(event.modelObjToAdd);
+        print(response);
 
         // //# from repo (NOTE:  if using GS, dont store response in var)
         // await voo_create_Gs_repo.create_voo(event.modelObjToAdd);

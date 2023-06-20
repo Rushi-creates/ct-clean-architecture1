@@ -3,7 +3,7 @@ import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../logic/trend_selection_logic/trend_selection_bloc.dart';
+import '../FORM/create_post_form_states_widget/trend_selection_logic/trend_selection_bloc.dart';
 
 class CreatePostSearchTileWidget<T> extends StatelessWidget {
   final singleObj;
