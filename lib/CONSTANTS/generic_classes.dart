@@ -8,6 +8,10 @@ class GMyPosts {}
 
 class GFollowing {}
 
+class GFollowingPosts {}
+
+class GSearchUsers {}
+
 //Trend
 // enum Trend { song, movie, series, youtube }
 class GSong {}

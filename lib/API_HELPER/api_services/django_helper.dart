@@ -183,4 +183,42 @@ class DjangoHelper {
       print('not fetched  ==> $e');
     }
   }
+
+/* -------------------------------------------------------------------------- */
+/*                                 //@ custom                                 */
+/* -------------------------------------------------------------------------- */
+
+  fetchJsonList_by_followingPost({
+    required fetchUrl,
+    required int pageSize,
+    required int pageNum,
+    required int profile_fk,
+    required String customSearch,
+  }) async {
+    try {
+      http.Response myResponse = await _client.get(
+          Uri.parse(fetchUrl +
+              '$profile_fk' +
+              '/' +
+              '?pagesize=$pageSize&pagenum=$pageNum'),
+          headers: {
+            'authorization': DjangoEndpoints.basicAuth,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }).timeout(
+        const Duration(seconds: 35),
+        //      onTimeout: () {
+
+        //   // return http.Response('Error', 408);
+        //   // throw TimeoutException('Timed out');
+        // }
+      );
+
+      return json.decode(myResponse.body);
+    } on TimeoutException {
+      print('this should not be reached if the exception is raised');
+    } catch (e) {
+      print('not fetched  ==> $e');
+    }
+  }
 }

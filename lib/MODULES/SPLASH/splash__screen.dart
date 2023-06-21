@@ -1,4 +1,7 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
+import 'package:ct_single_post/MODULES/HOME/logic/fetchFollowingPosts_stub/fetchFollowingPosts_bloc.dart'
+    as fetchFollowingPostsStub;
+import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/following_posts_repo.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/my_post_repo.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import 'package:flutter/material.dart';
@@ -90,5 +93,13 @@ class SplashScreenState extends State<SplashScreen> {
         List_FetchPosts_Event<GMyPosts>((counter) => MyPostRepo.instance
             .fetchProp(counter,
                 ProfileSpRepo.instance.getProfile()!.p_uid.toString())));
+
+    //! posts of following on home
+    BlocProvider.of<
+            fetchFollowingPostsStub
+                .FetchFollowingPostsBloc<GFollowingPosts>>(context)
+        .add(fetchFollowingPostsStub.List_FetchFollowingPosts_Event<
+                GFollowingPosts>(
+            (counter) => FollowingPostsRepo.instance.fetchHomePosts(counter)));
   }
 }

@@ -2,7 +2,7 @@ import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:ct_single_post/MODULES/BOTTOM_BAR1/expandable_fab_widget.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/ui/chip_widget.dart';
-import 'package:ct_single_post/MODULES/home.dart';
+import 'package:ct_single_post/MODULES/HOME/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
@@ -134,7 +134,7 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
   displayWhichScreenStates() {
     return BlocBuilder<ChipsCubit<GBottomBar>, int?>(builder: (context, state) {
       if (state == 0) {
-        return const Home(heading: 'home');
+        return const HomeScreen();
       } else if (state == 1) {
         return ProfileScreen(
             isFromSearchScreen: false,
@@ -142,7 +142,7 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
       } else if (state == 2) {
         return const CreatePostScreen();
       }
-      return const Home(heading: 'Home');
+      return const HomeScreen();
     });
   }
 }
