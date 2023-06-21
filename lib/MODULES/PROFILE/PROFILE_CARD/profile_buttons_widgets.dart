@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import '../../CREATE_PROFILE/cubit/create_profile_cubit.dart';
+// import '../../CREATE_PROFILE/ui/create_profile_screen.dart';
+import '../../FOLLOWING/FollowingScreen.dart';
+import '../../SETTINGS/Settings_screen.dart';
 
 class ProfileEditProfileButtonWidget extends StatelessWidget {
   const ProfileEditProfileButtonWidget({super.key});
@@ -9,9 +14,11 @@ class ProfileEditProfileButtonWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.35,
       child: GestureDetector(
         onTap: () {
+          // BlocProvider.of<CreateProfileCubit>(context)
+          //     .state
+          //     .isFromProfileScreen = true;
           // Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //   return CreateProfileScreen.fromProfileScreen(
-          //       isFromProfileScreen: true);
+          //   return const CreateProfileScreen();
           // }));
         },
         child: Container(
@@ -96,9 +103,9 @@ class ProfileSettingButtonWidget extends StatelessWidget {
         color: const Color.fromARGB(17, 255, 255, 255),
         child: InkWell(
           onTap: () {
-            // Navigator.push(context, MaterialPageRoute(builder: (context) {
-            //   return SettingScreen();
-            // }));
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const SettingScreen();
+            }));
           },
           child: const Padding(
             padding: EdgeInsets.all(10),
@@ -117,7 +124,13 @@ class ProfileSettingButtonWidget extends StatelessWidget {
 /*                         //! Following list Button()                        */
 /* -------------------------------------------------------------------------- */
 class ProfileFollowingListButton extends StatelessWidget {
-  const ProfileFollowingListButton({super.key});
+  final isFromSearchScreen;
+  final profileObj;
+  const ProfileFollowingListButton({
+    super.key,
+    required this.isFromSearchScreen,
+    required this.profileObj,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +138,12 @@ class ProfileFollowingListButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.1,
       child: GestureDetector(
         onTap: () {
-          // Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //   return FollowingScreen(
-          //     isAnotherProfile: widget.isFromSearchScreen,
-          //     profileId: widget.profileObj.p_uid,
-          //   );
-          // }));
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return FollowingScreen(
+              isAnotherProfile: isFromSearchScreen,
+              profileId: profileObj.p_uid,
+            );
+          }));
         },
         child: Container(
           decoration: BoxDecoration(

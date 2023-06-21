@@ -23,9 +23,9 @@ class ProfileImageWidget extends StatelessWidget {
       padding: const EdgeInsets.only(right: 8),
       child: CircleAvatar(
         backgroundColor: Colors.blue[200],
-        radius: screenSize.width * 0.15,
+        radius: screenSize.width * 0.14,
         child: CircleAvatar(
-          radius: screenSize.width * 0.14,
+          radius: screenSize.width * 0.13,
           backgroundColor: Colors.grey,
           backgroundImage: UserSpRepo.instance.getUser()?.photoUrl == "empty"
               ? NetworkImage(noPfp)

@@ -1,3 +1,4 @@
+import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_custom_collapsed_appbar_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_display_card_widget.dart';
 import 'package:flutter/material.dart';
@@ -35,40 +36,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+
       // backgroundColor: const Color(0xfff5f7f9),
       body: SliverSnap(
-          collapsedBackgroundColor: Colors.white,
-          expandedBackgroundColor: Colors.transparent,
-          expandedContentHeight: MediaQuery.of(context).size.height * 0.33,
+        collapsedBackgroundColor: Colors.white,
+        expandedBackgroundColor: Colors.transparent,
+        expandedContentHeight: MediaQuery.of(context).size.height * 0.33,
 
 /* -------------------------------------------------------------------------- */
 /*                                //@ Expnaded                                */
 /* -------------------------------------------------------------------------- */
 
-          expandedContent: ProfileDisplayCardWidget(
-            isFromSearchScreen: widget.isFromSearchScreen,
-            profileObj: widget.profileObj,
-          ),
+        expandedContent: ProfileDisplayCardWidget(
+          isFromSearchScreen: widget.isFromSearchScreen,
+          profileObj: widget.profileObj,
+        ),
 
 /* -------------------------------------------------------------------------- */
 /*                                //@ Collapsed                               */
 /* -------------------------------------------------------------------------- */
 
-          collapsedContent: ProfileCustomCollapsedAppBarWidget(
-            isFromSearchScreen: widget.isFromSearchScreen,
-            profileObj: widget.profileObj,
-          ),
+        collapsedContent: ProfileCustomCollapsedAppBarWidget(
+          isFromSearchScreen: widget.isFromSearchScreen,
+          profileObj: widget.profileObj,
+        ),
 
 /* -------------------------------------------------------------------------- */
 /*                                  //@ body                                  */
 /* -------------------------------------------------------------------------- */
 
-          body: const Column(
-            children: [
-              Text('non collabpsable'),
-              SizedBox(height: 900),
-            ],
-          )),
+        body: MyPostsWidget(
+          isFromSearchScreen: widget.isFromSearchScreen,
+          profileObj: widget.profileObj,
+        ),
+      ),
     );
   }
 }

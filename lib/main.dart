@@ -1,4 +1,5 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
+import 'package:ct_single_post/MODULES/COMMON/Crud_stub/fetch_stub/fetch_bloc.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
 import 'package:ct_single_post/MODULES/CREATE_POST/logic/Movies_tab/movies_fetch_logic/movies_fetch_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_POST/logic/Series_tab/series_fetch_logic/series_fetch_bloc.dart';
@@ -7,10 +8,11 @@ import 'package:ct_single_post/MODULES/CREATE_POST/logic/Songs_tab/trending_song
 import 'package:ct_single_post/MODULES/CREATE_POST/logic/Youtube_tab/youtube_fetch_logic/youtube_fetch_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_button_logic/create_profile_button_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/cubit/create_profile_cubit.dart';
-import 'package:ct_single_post/MODULES/PROFILE/profile_screen.dart';
+import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/fetchPosts_stub/fetchPosts_bloc.dart';
 import 'package:ct_single_post/MODULES/REGISTER/logic/register_button_logic/register_button_bloc.dart';
 import 'package:ct_single_post/MODULES/ROLE_CHECKER/logic/role_checker_logic/role_checker_bloc.dart';
-import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
+import 'package:ct_single_post/MODULES/SETTINGS/UserLod_logic/user_lod_bloc.dart';
+import 'package:ct_single_post/MODULES/SPLASH/splash__screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'API_HELPER/api_services/shared_preferences_helper.dart';
@@ -19,6 +21,8 @@ import 'MODULES/CREATE_POST/logic/Series_tab/trending_series_fetch_logic/trendin
 import 'MODULES/CREATE_POST/logic/Youtube_tab/trending_youtube_fetch_logic/trending_youtube_fetch_bloc.dart';
 import 'MODULES/CREATE_POST/ui/FORM/create_post_button_widget/MyPost_cud_logic/MyPost_cud_bloc.dart';
 import 'MODULES/CREATE_POST/ui/FORM/create_post_form_states_widget/trend_selection_logic/trend_selection_bloc.dart';
+// import 'package:ct_single_post/MODULES/PROFILE/profile_screen.dart';
+// import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
 // import 'SERIALIZERS/repositories/drf_api/profile_repo.dart';
 // import 'SERIALIZERS/repositories/drf_api/user_repo.dart';
 // import 'SERIALIZERS/repositories/other_api/google_auth_repo.dart';
@@ -69,11 +73,15 @@ class _MyAppState extends State<MyApp> {
             create: (context) => ChipsCubit<GBottomBar>(0)),
         BlocProvider<ChipsCubit<GCreatePostChips>>(
             create: (context) => ChipsCubit<GCreatePostChips>(0)),
+        BlocProvider<ChipsCubit<GMyPostsChips>>(
+            create: (context) => ChipsCubit<GMyPostsChips>(0)),
 
         //@ BLOCS
         BlocProvider<RoleCheckerBloc>(create: (context) => RoleCheckerBloc()),
         BlocProvider<RegisterButtonBloc>(
             create: (context) => RegisterButtonBloc()),
+
+        BlocProvider<UserLodBloc>(create: (context) => UserLodBloc()),
         BlocProvider<CreateProfileButtonBloc>(
             create: (context) => CreateProfileButtonBloc()),
 
@@ -101,6 +109,11 @@ class _MyAppState extends State<MyApp> {
             create: (context) => TrendingSeriesFetchBloc()),
 
         BlocProvider<MyPostCudBloc>(create: (context) => MyPostCudBloc()),
+        BlocProvider<FetchPostsBloc<GMyPosts>>(
+            create: (context) => FetchPostsBloc<GMyPosts>()),
+
+        BlocProvider<FetchBloc<GFollowing>>(
+            create: (context) => FetchBloc<GFollowing>()),
       ],
 
 /* -------------------------------------------------------------------------- */
@@ -108,15 +121,16 @@ class _MyAppState extends State<MyApp> {
 /* -------------------------------------------------------------------------- */
 
       child: MaterialApp(
-        title: 'Flutter app',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: ProfileScreen(
-            isFromSearchScreen: false,
-            profileObj: ProfileSpRepo.instance.getProfile()!),
-      ),
+          title: 'CT mvp one',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const SplashScreen()
+          // home: ProfileScreen(
+          //     isFromSearchScreen: false,
+          //     profileObj: ProfileSpRepo.instance.getProfile()!),
+          ),
     );
   }
 }

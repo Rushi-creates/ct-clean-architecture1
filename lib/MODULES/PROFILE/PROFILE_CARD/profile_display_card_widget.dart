@@ -38,7 +38,8 @@ class ProfileDisplayCardWidget extends StatelessWidget {
 
                   //@
                   Padding(
-                    padding: const EdgeInsets.only(left: 30.0, right: 30),
+                    padding:
+                        const EdgeInsets.only(left: 30.0, top: 30, right: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -131,7 +132,10 @@ class ProfileDisplayCardWidget extends StatelessWidget {
               const SizedBox(width: 5),
 
               //@
-              const ProfileFollowingListButton()
+              ProfileFollowingListButton(
+                profileObj: profileObj,
+                isFromSearchScreen: isFromSearchScreen,
+              )
             ],
           ),
         ],

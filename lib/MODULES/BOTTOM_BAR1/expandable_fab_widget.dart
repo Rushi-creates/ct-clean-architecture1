@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
-import '../../../CONSTANTS/image_paths.dart';
+import '../../CONSTANTS/image_paths.dart';
 
 class ExpandableFabWidget extends StatelessWidget {
   const ExpandableFabWidget({super.key});

@@ -79,6 +79,12 @@ class UserRepo {
   //   var rawData = await DjangoHelper.instance.delete(DjangoEndpoints.someUrl, jsonPk);
   //   return rawData;
   // }
+
+  delete(jsonPk) async {
+    var rawData = await DjangoHelper.instance
+        .delete(DjangoEndpoints.userAcc_delete, jsonPk);
+    return rawData; // as api returns string, not a map
+  }
 }
 
 /* -------------------------------------------------------------------------- */

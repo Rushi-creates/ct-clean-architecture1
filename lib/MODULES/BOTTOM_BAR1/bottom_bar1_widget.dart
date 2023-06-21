@@ -1,5 +1,5 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
-import 'package:ct_single_post/MODULES/BOTTOM_BAR1/ui/expandable_fab_widget.dart';
+import 'package:ct_single_post/MODULES/BOTTOM_BAR1/expandable_fab_widget.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/cubit/chips_cubit.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/ui/chip_widget.dart';
 import 'package:ct_single_post/MODULES/home.dart';
@@ -7,7 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 
-import '../../CREATE_POST/ui/SCREEN/create_post_screen.dart';
+import '../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
+import '../CREATE_POST/ui/SCREEN/create_post_screen.dart';
+import '../PROFILE/profile_screen.dart';
 
 class Bottombar1Widget extends StatefulWidget {
   const Bottombar1Widget({super.key});
@@ -134,7 +136,9 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
       if (state == 0) {
         return const Home(heading: 'home');
       } else if (state == 1) {
-        return const Home(heading: 'profile');
+        return ProfileScreen(
+            isFromSearchScreen: false,
+            profileObj: ProfileSpRepo.instance.getProfile()!);
       } else if (state == 2) {
         return const CreatePostScreen();
       }
