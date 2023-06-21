@@ -1,3 +1,4 @@
+import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/ui/follow_unfollow_button_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_buttons_widgets.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_followers_count_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_image_widget.dart';
@@ -6,8 +7,6 @@ import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dar
 import 'package:flutter/material.dart';
 
 import '../../../SERIALIZERS/models/Profile.dart';
-import 'FOLLOW_UNFOLLOW_BUTTONS/ui/Follow_widget.dart';
-import 'FOLLOW_UNFOLLOW_BUTTONS/ui/Unfollow_widget.dart';
 
 class ProfileDisplayCardWidget extends StatelessWidget {
   final Profile profileObj;
@@ -116,16 +115,10 @@ class ProfileDisplayCardWidget extends StatelessWidget {
                   ? const ProfileEditProfileButtonWidget()
 
                   //
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Follow_widget(
-                            my_profileId: myProfile.p_uid,
-                            otherProfileId: profileObj.p_uid),
-                        Unfollow_widget(
-                            my_profileId: myProfile.p_uid,
-                            otherProfileId: profileObj.p_uid),
-                      ],
+
+                  : FollowUnfollowButtonWidget(
+                      myProfileId: myProfile.p_uid,
+                      otherProfileId: profileObj.p_uid,
                     ),
 
               //@

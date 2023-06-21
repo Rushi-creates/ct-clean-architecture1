@@ -10,6 +10,7 @@ import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_button_logi
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/cubit/create_profile_cubit.dart';
 import 'package:ct_single_post/MODULES/HOME/logic/fetchFollowingPosts_stub/fetchFollowingPosts_bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/fetchPosts_stub/fetchPosts_bloc.dart';
+import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/follow_unfollow_logic/follow_unfollow_bloc.dart';
 import 'package:ct_single_post/MODULES/REGISTER/logic/register_button_logic/register_button_bloc.dart';
 import 'package:ct_single_post/MODULES/ROLE_CHECKER/logic/role_checker_logic/role_checker_bloc.dart';
 import 'package:ct_single_post/MODULES/SETTINGS/UserLod_logic/user_lod_bloc.dart';
@@ -22,7 +23,6 @@ import 'MODULES/CREATE_POST/logic/Series_tab/trending_series_fetch_logic/trendin
 import 'MODULES/CREATE_POST/logic/Youtube_tab/trending_youtube_fetch_logic/trending_youtube_fetch_bloc.dart';
 import 'MODULES/CREATE_POST/ui/FORM/create_post_button_widget/MyPost_cud_logic/MyPost_cud_bloc.dart';
 import 'MODULES/CREATE_POST/ui/FORM/create_post_form_states_widget/trend_selection_logic/trend_selection_bloc.dart';
-import 'MODULES/PROFILE/PROFILE_CARD/FOLLOW_UNFOLLOW_BUTTONS/logic/Check_if_follows_logic/CheckIfFollows_cud_bloc.dart';
 // import 'package:ct_single_post/MODULES/PROFILE/profile_screen.dart';
 // import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
 // import 'SERIALIZERS/repositories/drf_api/profile_repo.dart';
@@ -110,8 +110,8 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<TrendingSeriesFetchBloc>(
             create: (context) => TrendingSeriesFetchBloc()),
 
-        BlocProvider<CheckIfFollowsCudBloc>(
-            create: (context) => CheckIfFollowsCudBloc()),
+        BlocProvider<FollowUnfollowBloc>(
+            create: (context) => FollowUnfollowBloc()),
 
         BlocProvider<MyPostCudBloc>(create: (context) => MyPostCudBloc()),
         BlocProvider<FetchPostsBloc<GMyPosts>>(

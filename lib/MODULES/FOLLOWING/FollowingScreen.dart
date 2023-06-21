@@ -5,6 +5,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../CONSTANTS/generic_classes.dart';
 import '../COMMON/Crud_stub/fetch_stub/fetch_bloc.dart';
+// import '../../SERIALIZERS/repositories/drf_api/my_post_repo.dart';
+// import '../PROFILE/My_POSTS/fetchPosts_stub/fetchPosts_bloc.dart'
+//     as fetchGMyPosts;
+// import '../PROFILE/profile_screen.dart';
 
 //to change class name = right click on className> Rename symbol
 class FollowingScreen extends StatefulWidget {
@@ -60,9 +64,9 @@ class _FollowingScreenState extends State<FollowingScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 7.0),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
               Color.fromARGB(255, 245, 245, 245),
               Color.fromARGB(255, 255, 255, 255),
@@ -76,12 +80,12 @@ class _FollowingScreenState extends State<FollowingScreen> {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 1,
               blurRadius: 4,
-              offset: Offset(0, 1),
+              offset: const Offset(0, 1),
             ),
           ],
         ),
         child: ListTile(
-          contentPadding: EdgeInsets.all(0),
+          contentPadding: const EdgeInsets.all(0),
           leading: CircleAvatar(
             radius: 20,
             backgroundImage: NetworkImage(
@@ -92,7 +96,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
           ),
           title: Text(
             singleObj.username,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -111,41 +115,13 @@ class _FollowingScreenState extends State<FollowingScreen> {
     );
   }
 
-  // myListTile(singleObj) {
-  //   return ListTile(
-  //     leading: Image.network(
-  //       singleObj.imageUrl == 'empty'
-  //           ? 'https://i.pravatar.cc/400'
-  //           : singleObj.imageUrl,
-  //       width: 40,
-  //       height: 40,
-  //     ),
-  //     title: Text(singleObj.username),
-  //     trailing: Icon(Icons.arrow_forward),
-  //     onTap: () {
-  //       // do something when the list tile is tapped
-  //     },
-  //     contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.circular(10),
-  //       side: BorderSide(
-  //         color: Colors.grey.shade300,
-  //         width: 1,
-  //       ),
-  //     ),
-  //     tileColor: Colors.white,
-  //     selectedTileColor: Colors.grey.shade200,
-  //     selected: true,
-  //   );
-  // }
-
   AppBar myHeader() {
     return AppBar(
       backgroundColor: Colors.white,
       centerTitle: true,
       elevation: 0.0,
       leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -154,7 +130,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
           }),
       // automaticallyImplyLeading: true,  //removes default back arrow on appbar
 
-      title: Text(
+      title: const Text(
         'My following', //give here appBar title
         style: TextStyle(color: Colors.black
             // fontWeight: FontWeight.bold
@@ -174,4 +150,26 @@ class _FollowingScreenState extends State<FollowingScreen> {
       // ],
     );
   }
+
+/* -------------------------------------------------------------------------- */
+/*                             //@ functionlities                             */
+/* -------------------------------------------------------------------------- */
+
+  // fetchListFunc(context, listTileInfo) async {
+  //   //!
+  //   BlocProvider.of<fetchGMyPosts.FetchPostsBloc<GMyPosts>>(context)
+  //       .add(fetchGMyPosts.List_Refresh_Event<GMyPosts>());
+  //   BlocProvider.of<fetchGMyPosts.FetchPostsBloc<GMyPosts>>(context).add(
+  //       fetchGMyPosts.List_FetchPosts_Event<GMyPosts>((counter) => MyPostRepo
+  //           .instance
+  //           .fetchProp(counter, listTileInfo.p_uid.toString())));
+
+  //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+  //     return ProfileScreen(
+  //       profileObj: singleObj,
+  //       isFromSearchScreen: true,
+  //       // profilePuid: singleObj.p_uid,
+  //     );
+  //   }));
+  // }
 }

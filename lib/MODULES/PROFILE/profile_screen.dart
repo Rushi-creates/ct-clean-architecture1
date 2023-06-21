@@ -1,13 +1,16 @@
 import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_widget.dart';
+import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/follow_unfollow_logic/follow_unfollow_bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_custom_collapsed_appbar_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_display_card_widget.dart';
+import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliver_snap/widgets/sliver_snap.dart';
 
-import '../../SERIALIZERS/models/Profile.dart';
+import '../../SERIALIZERS/models/follow_account.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final Profile profileObj;
+  final profileObj;
   final bool isFromSearchScreen;
   const ProfileScreen({
     super.key,
@@ -27,6 +30,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+    FollowAccount followAccount = FollowAccount(
+        my_profile_fk: ProfileSpRepo.instance.getProfile()!.p_uid!,
+        other_profile_fk: widget.profileObj.p_uid!);
+    BlocProvider.of<FollowUnfollowBloc>(context)
+        .add(CheckIfFollowsEvent(followAccount));
   }
 /* -------------------------------------------------------------------------- */
 /*                                //! structure                               */

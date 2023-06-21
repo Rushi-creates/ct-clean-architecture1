@@ -68,6 +68,8 @@ class DjangoEndpoints {
   static const String follow_add = domainUrl + 'following/add/';
   static const String follow_update = domainUrl + 'following/update/';
   static const String follow_delete = domainUrl + 'following/delete/';
+  static const String follow_deleteByProfileIds =
+      domainUrl + 'following/deleteByMyIdAndVisitedId/';
 
   static const String checkIfFollows = domainUrl + 'following/checkIfFollows/';
 

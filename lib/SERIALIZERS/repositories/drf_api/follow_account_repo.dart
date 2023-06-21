@@ -91,9 +91,14 @@ class FollowAccountRepo {
   //   return rawData;
   // }
 
-  delete(modelObjArg_Id) async {
-    var rawData = await DjangoHelper.instance
-        .delete(DjangoEndpoints.follow_delete, modelObjArg_Id);
+  // delete(modelObjArg_Id) async {
+  //   var rawData = await DjangoHelper.instance
+  //       .delete(DjangoEndpoints.follow_delete, modelObjArg_Id);
+//   return rawData; // as api returns string, not a map
+  // }
+  deleteUsingProfileId(myrofile, visitedProfileId) async {
+    var rawData = await DjangoHelper.instance.deleteUnfollowUsingProfileIds(
+        DjangoEndpoints.follow_deleteByProfileIds, myrofile, visitedProfileId);
     return rawData; // as api returns string, not a map
   }
 }

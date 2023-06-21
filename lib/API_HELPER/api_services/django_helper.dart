@@ -221,4 +221,28 @@ class DjangoHelper {
       print('not fetched  ==> $e');
     }
   }
+
+  //! delete/unfollow using profileId and visited id
+
+  deleteUnfollowUsingProfileIds(url, myProfileId, visitedProfileId) async {
+    try {
+      var myResponse = await _client.delete(
+          Uri.parse(url +
+              myProfileId.toString() +
+              "/" +
+              visitedProfileId.toString() +
+              "/"),
+          headers: {
+            'authorization': DjangoEndpoints.basicAuth,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }).timeout(
+        const Duration(seconds: 35),
+      );
+
+      return json.decode(myResponse.body);
+    } catch (e) {
+      print('Not deleted from api ==> $e');
+    }
+  }
 }
