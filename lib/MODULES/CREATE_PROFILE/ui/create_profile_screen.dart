@@ -1,8 +1,7 @@
-import 'package:ct_single_post/MODULES/CREATE_PROFILE/cubit/create_profile_cubit.dart';
+import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_singleton.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/ui/create_profile_button_widget.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/ui/create_profile_textfields_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CreateProfileScreen extends StatelessWidget {
   const CreateProfileScreen({super.key});
@@ -50,7 +49,7 @@ class CreateProfileScreen extends StatelessWidget {
 
   displayText(context) {
     return Text(
-      BlocProvider.of<CreateProfileCubit>(context).state.isFromProfileScreen
+      CreateProfileSingleton.instance.isFromProfileScreen
           ? "UPDATE PROFILE"
           : "CREATE PROFILE",
       // maxLines: 2,
@@ -73,9 +72,7 @@ class CreateProfileScreen extends StatelessWidget {
         elevation: 0.0,
 
         //# Condition if called from profile screen
-        leading: BlocProvider.of<CreateProfileCubit>(context)
-                .state
-                .isFromProfileScreen
+        leading: CreateProfileSingleton.instance.isFromProfileScreen
             ? IconButton(
                 icon: const Icon(
                   Icons.arrow_back,

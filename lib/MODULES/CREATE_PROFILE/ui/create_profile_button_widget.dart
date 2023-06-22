@@ -1,4 +1,5 @@
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/loader_widget.dart';
+import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_singleton.dart';
 import 'package:ct_single_post/MODULES/ROLE_CHECKER/ui/role_checker_screen.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/user_repo.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../SERIALIZERS/models/Profile.dart';
 import '../create_profile_button_logic/create_profile_button_bloc.dart';
-import '../cubit/create_profile_cubit.dart';
 
 class CreatProfileButtonWidget extends StatelessWidget {
   const CreatProfileButtonWidget({super.key});
@@ -62,26 +62,16 @@ class CreatProfileButtonWidget extends StatelessWidget {
         child: TextButton(
           style: TextButton.styleFrom(backgroundColor: Colors.black),
           onPressed: () {
-            if (BlocProvider.of<CreateProfileCubit>(context)
-                .state
-                .createFormKey
-                .currentState!
+            if (CreateProfileSingleton.instance.createFormKey.currentState!
                 .validate()) {
               Profile profileObj = Profile(
                 p_uid: UserSpRepo.instance.getUser()!.id!,
-                username: BlocProvider.of<CreateProfileCubit>(context)
-                    .state
-                    .usernameController
-                    .text,
-                bio: BlocProvider.of<CreateProfileCubit>(context)
-                    .state
-                    .bioController
-                    .text,
+                username:
+                    CreateProfileSingleton.instance.usernameController.text,
+                bio: CreateProfileSingleton.instance.bioController.text,
               );
 
-              BlocProvider.of<CreateProfileCubit>(context)
-                      .state
-                      .isFromProfileScreen
+              CreateProfileSingleton.instance.isFromProfileScreen
                   ? BlocProvider.of<CreateProfileButtonBloc>(context).add(
                       CreateProfileButtonClickedEvent(
                           isProfileUpdateEvent: true,
@@ -93,9 +83,7 @@ class CreatProfileButtonWidget extends StatelessWidget {
             }
           },
           child: Text(
-            BlocProvider.of<CreateProfileCubit>(context)
-                    .state
-                    .isFromProfileScreen
+            CreateProfileSingleton.instance.isFromProfileScreen
                 ? "UPDATE PROFILE"
                 : "CONTINUE TO APP",
             style: const TextStyle(

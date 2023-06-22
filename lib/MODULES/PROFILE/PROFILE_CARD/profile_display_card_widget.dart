@@ -3,24 +3,16 @@ import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_buttons_widg
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_followers_count_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_image_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_username_and_bio_widget.dart';
-import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
+import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:flutter/material.dart';
 
-import '../../../SERIALIZERS/models/Profile.dart';
+import '../../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
 
 class ProfileDisplayCardWidget extends StatelessWidget {
-  final Profile profileObj;
-  final bool isFromSearchScreen;
-  const ProfileDisplayCardWidget({
-    super.key,
-    required this.profileObj,
-    required this.isFromSearchScreen,
-  });
+  const ProfileDisplayCardWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Profile myProfile = ProfileSpRepo.instance.getProfile()!;
-
     return Container(
       color: Colors.white,
       child: Column(
@@ -42,10 +34,10 @@ class ProfileDisplayCardWidget extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        isFromSearchScreen
+                        ProfileScreenSingleton.instance.isFromSearchScreen
                             ? const ProfileDummyBackButtonWidget()
                             : Container(),
-                        isFromSearchScreen
+                        ProfileScreenSingleton.instance.isFromSearchScreen
                             ? Container()
                             : const ProfileSettingButtonWidget()
                       ],
@@ -103,7 +95,7 @@ class ProfileDisplayCardWidget extends StatelessWidget {
           ),
 
           //
-          ProfileUsernameAndBioWidget(profileObj: profileObj),
+          const ProfileUsernameAndBioWidget(),
 
           //
 
@@ -111,24 +103,19 @@ class ProfileDisplayCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //@
-              profileObj == myProfile
+              ProfileScreenSingleton.instance.profileObj ==
+                      ProfileSpRepo.instance.getProfile()
                   ? const ProfileEditProfileButtonWidget()
 
                   //
 
-                  : FollowUnfollowButtonWidget(
-                      myProfileId: myProfile.p_uid,
-                      otherProfileId: profileObj.p_uid,
-                    ),
+                  : FollowUnfollowButtonWidget(),
 
               //@
               const SizedBox(width: 5),
 
               //@
-              ProfileFollowingListButton(
-                profileObj: profileObj,
-                isFromSearchScreen: isFromSearchScreen,
-              )
+              ProfileFollowingListButton()
             ],
           ),
         ],

@@ -6,10 +6,10 @@ import 'package:ct_single_post/MODULES/HOME/ui/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
-
 import '../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import '../CREATE_POST/ui/SCREEN/create_post_screen.dart';
 import '../PROFILE/profile_screen.dart';
+import '../PROFILE/profile_screen_singleton.dart';
 
 class Bottombar1Widget extends StatefulWidget {
   const Bottombar1Widget({super.key});
@@ -136,9 +136,10 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
       if (state == 0) {
         return const HomeScreen();
       } else if (state == 1) {
-        return ProfileScreen(
-            isFromSearchScreen: false,
-            profileObj: ProfileSpRepo.instance.getProfile()!);
+        ProfileScreenSingleton.instance.setIsFromProfileScreen(false);
+        ProfileScreenSingleton.instance
+            .setProfileObj(ProfileSpRepo.instance.getProfile()!);
+        return const ProfileScreen();
       } else if (state == 2) {
         return const CreatePostScreen();
       }

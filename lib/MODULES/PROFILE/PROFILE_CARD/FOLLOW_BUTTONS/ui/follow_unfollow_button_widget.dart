@@ -1,17 +1,13 @@
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/follow_unfollow_logic/follow_unfollow_bloc.dart';
+import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../SERIALIZERS/models/follow_account.dart';
+import '../../../../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
 
 class FollowUnfollowButtonWidget extends StatelessWidget {
-  final myProfileId;
-  final otherProfileId;
-  const FollowUnfollowButtonWidget({
-    super.key,
-    required this.myProfileId,
-    required this.otherProfileId,
-  });
+  const FollowUnfollowButtonWidget({super.key});
 
 /* -------------------------------------------------------------------------- */
 /*                                  //@ build                                 */
@@ -67,7 +63,9 @@ class FollowUnfollowButtonWidget extends StatelessWidget {
           onPressed: () {
             //
             FollowAccount followAccount = FollowAccount(
-                my_profile_fk: myProfileId, other_profile_fk: otherProfileId);
+                my_profile_fk: ProfileSpRepo.instance.getProfile()!.p_uid!,
+                other_profile_fk:
+                    ProfileScreenSingleton.instance.profileObj.p_uid!);
 
             //
             BlocProvider.of<FollowUnfollowBloc>(context)
@@ -96,8 +94,10 @@ class FollowUnfollowButtonWidget extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            BlocProvider.of<FollowUnfollowBloc>(context)
-                .add(UnfollowAccountEvent(myProfileId, otherProfileId));
+            BlocProvider.of<FollowUnfollowBloc>(context).add(
+                UnfollowAccountEvent(
+                    ProfileSpRepo.instance.getProfile()!.p_uid!,
+                    ProfileScreenSingleton.instance.profileObj.p_uid!));
           },
           child: Text(
             "Unfollow",

@@ -1,4 +1,5 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
+import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/my_post_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -72,11 +73,9 @@ class SearchProfileListTileWidget extends StatelessWidget {
             .fetchProp(counter, listTileInfo.p_uid.toString())));
 
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return ProfileScreen(
-        profileObj: singleObj,
-        isFromSearchScreen: true,
-        // profilePuid: singleObj.p_uid,
-      );
+      ProfileScreenSingleton.instance.setIsFromProfileScreen(true);
+      ProfileScreenSingleton.instance.setProfileObj(singleObj);
+      return const ProfileScreen();
     }));
   }
 }

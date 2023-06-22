@@ -1,19 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_followers_count_widget.dart';
+import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:flutter/material.dart';
-
-import 'package:ct_single_post/SERIALIZERS/models/Profile.dart';
-
+import '../../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import '../../../SERIALIZERS/repositories/drf_api/user_repo.dart';
 
 class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
-  final bool isFromSearchScreen;
-  final Profile profileObj;
-  const ProfileCustomCollapsedAppBarWidget({
-    Key? key,
-    required this.isFromSearchScreen,
-    required this.profileObj,
-  }) : super(key: key);
+  const ProfileCustomCollapsedAppBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +28,7 @@ class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
 /*                                     //!                                    */
 /* -------------------------------------------------------------------------- */
 
-        isFromSearchScreen
+        ProfileScreenSingleton.instance.isFromSearchScreen
             ? IconButton(
                 onPressed: () {
                   Navigator.pop(context);
@@ -72,7 +65,7 @@ class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 12.0),
               child: Text(
-                '${profileObj.username}',
+                '${ProfileSpRepo.instance.getProfile()!.username}',
                 // maxLines: 2,
                 // overflow: TextOverflow.ellipsis,
                 // textAlign: TextAlign.center,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 // import '../../CREATE_PROFILE/cubit/create_profile_cubit.dart';
 // import '../../CREATE_PROFILE/ui/create_profile_screen.dart';
+import '../../CREATE_PROFILE/create_profile_singleton.dart';
+import '../../CREATE_PROFILE/ui/create_profile_screen.dart';
 import '../../FOLLOWING/FollowingScreen.dart';
 import '../../SETTINGS/Settings_screen.dart';
 
@@ -14,12 +16,10 @@ class ProfileEditProfileButtonWidget extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.35,
       child: GestureDetector(
         onTap: () {
-          // BlocProvider.of<CreateProfileCubit>(context)
-          //     .state
-          //     .isFromProfileScreen = true;
-          // Navigator.push(context, MaterialPageRoute(builder: (context) {
-          //   return const CreateProfileScreen();
-          // }));
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            CreateProfileSingleton.instance.setIsFromProfileScreen(true);
+            return const CreateProfileScreen();
+          }));
         },
         child: Container(
           decoration: const BoxDecoration(
@@ -124,13 +124,7 @@ class ProfileSettingButtonWidget extends StatelessWidget {
 /*                         //! Following list Button()                        */
 /* -------------------------------------------------------------------------- */
 class ProfileFollowingListButton extends StatelessWidget {
-  final isFromSearchScreen;
-  final profileObj;
-  const ProfileFollowingListButton({
-    super.key,
-    required this.isFromSearchScreen,
-    required this.profileObj,
-  });
+  const ProfileFollowingListButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -139,10 +133,7 @@ class ProfileFollowingListButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return FollowingScreen(
-              isAnotherProfile: isFromSearchScreen,
-              profileId: profileObj.p_uid,
-            );
+            return FollowingScreen();
           }));
         },
         child: Container(

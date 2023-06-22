@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../SERIALIZERS/models/Profile.dart';
+import '../profile_screen_singleton.dart';
 
 class ProfileUsernameAndBioWidget extends StatelessWidget {
-  final Profile profileObj;
-  const ProfileUsernameAndBioWidget({
-    super.key,
-    required this.profileObj,
-  });
+  const ProfileUsernameAndBioWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +22,7 @@ class ProfileUsernameAndBioWidget extends StatelessWidget {
 
           Text(
             // '@' +
-            '${profileObj.username}',
+            '${ProfileScreenSingleton.instance.profileObj.username}',
             // maxLines: 2,
             // overflow: TextOverflow.ellipsis,
             // textAlign: TextAlign.center,
@@ -48,7 +44,7 @@ class ProfileUsernameAndBioWidget extends StatelessWidget {
 /*                                   //@ bio                                  */
 /* -------------------------------------------------------------------------- */
           Text(
-            '${profileObj.bio}',
+            '${ProfileScreenSingleton.instance.profileObj.bio}',
             // maxLines: 2,
             // overflow: TextOverflow.ellipsis,
             // textAlign: TextAlign.center,

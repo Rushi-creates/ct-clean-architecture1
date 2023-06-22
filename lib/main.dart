@@ -7,7 +7,6 @@ import 'package:ct_single_post/MODULES/CREATE_POST/logic/Songs_tab/songs_fetch_l
 import 'package:ct_single_post/MODULES/CREATE_POST/logic/Songs_tab/trending_songs_fetch_logic/trending_songs_fetch_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_POST/logic/Youtube_tab/youtube_fetch_logic/youtube_fetch_bloc.dart';
 import 'package:ct_single_post/MODULES/CREATE_PROFILE/create_profile_button_logic/create_profile_button_bloc.dart';
-import 'package:ct_single_post/MODULES/CREATE_PROFILE/cubit/create_profile_cubit.dart';
 import 'package:ct_single_post/MODULES/HOME/logic/fetchFollowingPosts_stub/fetchFollowingPosts_bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/fetchPosts_stub/fetchPosts_bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/follow_unfollow_logic/follow_unfollow_bloc.dart';
@@ -68,8 +67,8 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         // //@ CUBITS
-        BlocProvider<CreateProfileCubit>(
-            create: (context) => CreateProfileCubit()),
+        // BlocProvider<CreateProfileCubit>(
+        //     create: (context) => CreateProfileCubit()),
 
         BlocProvider<ChipsCubit<GBottomBar>>(
             create: (context) => ChipsCubit<GBottomBar>(0)),

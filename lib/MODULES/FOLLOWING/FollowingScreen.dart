@@ -1,4 +1,5 @@
 import 'package:ct_single_post/MODULES/COMMON/Crud_stub/fetch_stub/fetch_widget.dart';
+import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/follow_account_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,12 +11,8 @@ import '../COMMON/Crud_stub/fetch_stub/fetch_bloc.dart';
 //     as fetchGMyPosts;
 // import '../PROFILE/profile_screen.dart';
 
-//to change class name = right click on className> Rename symbol
 class FollowingScreen extends StatefulWidget {
-  final profileId;
-  final isAnotherProfile;
-  const FollowingScreen(
-      {required this.profileId, required this.isAnotherProfile});
+  const FollowingScreen({super.key});
 
   @override
   _FollowingScreenState createState() => _FollowingScreenState();
@@ -31,7 +28,8 @@ class _FollowingScreenState extends State<FollowingScreen> {
 
     BlocProvider.of<FetchBloc<GFollowing>>(context).add(
         List_Fetch_Event<GFollowing>((counter) => FollowAccountRepo.instance
-            .fetchProp_myFollowing(counter, widget.profileId)));
+            .fetchProp_myFollowing(
+                counter, ProfileScreenSingleton.instance.profileObj.p_uid)));
     // }
   }
 
@@ -49,9 +47,11 @@ class _FollowingScreenState extends State<FollowingScreen> {
     return SafeArea(
         child: Container(
       child: Fetch_widget<GFollowing>(
-        fetchAutomatically: widget.isAnotherProfile ? false : true,
+        fetchAutomatically:
+            ProfileScreenSingleton.instance.isFromSearchScreen ? false : true,
         myFetchFunc: (counter) => FollowAccountRepo.instance
-            .fetchProp_myFollowing(counter, widget.profileId),
+            .fetchProp_myFollowing(
+                counter, ProfileScreenSingleton.instance.profileObj.p_uid),
         listTile: (singleObj) => myListTile(singleObj),
       ),
       // child: Zoo_Fetch_Screen(
@@ -162,14 +162,13 @@ class _FollowingScreenState extends State<FollowingScreen> {
   //   BlocProvider.of<fetchGMyPosts.FetchPostsBloc<GMyPosts>>(context).add(
   //       fetchGMyPosts.List_FetchPosts_Event<GMyPosts>((counter) => MyPostRepo
   //           .instance
-  //           .fetchProp(counter, listTileInfo.p_uid.toString())));
+  //           .fetchProp(counter, listTileInfo.other_profile_fk.toString())));
 
   //   Navigator.push(context, MaterialPageRoute(builder: (context) {
-  //     return ProfileScreen(
-  //       profileObj: singleObj,
-  //       isFromSearchScreen: true,
-  //       // profilePuid: singleObj.p_uid,
-  //     );
+  //     ProfileScreenSingleton.instance.setIsFromProfileScreen(true);
+  //     // here we need to pass visited profile obj, but we dont have it since, we only have /following/ data in here
+  //     ProfileScreenSingleton.instance.setProfileObj(singleObj);
+  //     return const ProfileScreen();
   //   }));
   // }
 }

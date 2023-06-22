@@ -2,6 +2,7 @@ import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_widget.dart'
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/follow_unfollow_logic/follow_unfollow_bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_custom_collapsed_appbar_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_display_card_widget.dart';
+import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,13 +11,7 @@ import 'package:sliver_snap/widgets/sliver_snap.dart';
 import '../../SERIALIZERS/models/follow_account.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final profileObj;
-  final bool isFromSearchScreen;
-  const ProfileScreen({
-    super.key,
-    required this.profileObj,
-    required this.isFromSearchScreen,
-  });
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -32,7 +27,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     super.initState();
     FollowAccount followAccount = FollowAccount(
         my_profile_fk: ProfileSpRepo.instance.getProfile()!.p_uid!,
-        other_profile_fk: widget.profileObj.p_uid!);
+        other_profile_fk: ProfileScreenSingleton.instance.profileObj.p_uid!);
     BlocProvider.of<FollowUnfollowBloc>(context)
         .add(CheckIfFollowsEvent(followAccount));
   }
@@ -55,28 +50,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
 /*                                //@ Expnaded                                */
 /* -------------------------------------------------------------------------- */
 
-        expandedContent: ProfileDisplayCardWidget(
-          isFromSearchScreen: widget.isFromSearchScreen,
-          profileObj: widget.profileObj,
-        ),
+        expandedContent: const ProfileDisplayCardWidget(),
 
 /* -------------------------------------------------------------------------- */
 /*                                //@ Collapsed                               */
 /* -------------------------------------------------------------------------- */
 
-        collapsedContent: ProfileCustomCollapsedAppBarWidget(
-          isFromSearchScreen: widget.isFromSearchScreen,
-          profileObj: widget.profileObj,
-        ),
+        collapsedContent: const ProfileCustomCollapsedAppBarWidget(),
 
 /* -------------------------------------------------------------------------- */
 /*                                  //@ body                                  */
 /* -------------------------------------------------------------------------- */
 
-        body: MyPostsWidget(
-          isFromSearchScreen: widget.isFromSearchScreen,
-          profileObj: widget.profileObj,
-        ),
+        body: const MyPostsWidget(),
       ),
     );
   }
