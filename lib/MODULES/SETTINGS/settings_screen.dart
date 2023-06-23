@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/snackbar_widget.dart';
+import 'package:ct_single_post/MODULES/SETTINGS/settings_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,7 +20,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color.fromARGB(255, 247, 247, 247),
       // resizeToAvoidBottomInset: false,
       appBar: myHeader(),
       body: myBody(),
@@ -31,113 +33,88 @@ class _SettingScreenState extends State<SettingScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            AboutProfilCard(),
-            const Divider(),
+            const SizedBox(height: 10),
+            aboutProfilCard(),
             cautionZone(),
-            const Divider(),
-            seeYouSoonCard()
           ],
         ),
       ),
     );
   }
 
-  AboutProfilCard() {
-    var dimVar = MediaQuery.of(context).size;
-
+  aboutProfilCard() {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-          width: dimVar.width * 0.9,
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Your Profile",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0,
-                      ),
-                    ),
-                    sp_userAccObj_BlocProvider_STATES(),
-                  ]),
-            ),
-          )),
-    );
-  }
-
-  cautionZone() {
-    var dimVar = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: SizedBox(
-        width: dimVar.width * 0.9,
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                caution_Text(),
-                SizedBox(height: dimVar.height * 0.02),
-                caution_tile_logout(),
-                const Divider(),
-                caution_tile_DeleteAccount(),
-              ],
-            ),
-          ),
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Card(
+        elevation: 0.5,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: sp_userAccObj_BlocProvider_STATES(),
         ),
       ),
     );
   }
 
-  seeYouSoonCard() {
-    var dimVar = MediaQuery.of(context).size;
-
-//height : dimVar.height*0.5    //to access height
-//width : dimVar.width*0.5       //acces width
-    return FittedBox(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
-          elevation: 3,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  cautionZone() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15.0),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(15.0),
-                child: Text(
-                  'New features \ncomming soon :)',
-                  // maxLines: 2,
-                  // overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.end,
-                  style: TextStyle(
-                    color: Colors.pink,
-                    // decoration: TextDecoration.none,
-                    fontStyle: FontStyle.italic,
-                    // fontFamily: "FontNameHere" ,
-                    fontWeight: FontWeight.bold,
-                    // fontWeight: FontWeight.w300,
-                    fontSize: 17.0,
-                  ),
-                ),
-              ),
-              Image.asset("images/waiting.jpg",
-                  height: 200, width: dimVar.width * 0.5)
+              caution_tile_logout(),
+              const Divider(),
+              caution_tile_DeleteAccount(),
             ],
           ),
         ),
       ),
     );
   }
+
+//   seeYouSoonCard() {
+//     var dimVar = MediaQuery.of(context).size;
+
+// //height : dimVar.height*0.5    //to access height
+// //width : dimVar.width*0.5       //acces width
+//     return FittedBox(
+//       child: Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Card(
+//           elevation: 3,
+//           child: Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             children: [
+//               const Padding(
+//                 padding: EdgeInsets.all(15.0),
+//                 child: Text(
+//                   'New features \ncomming soon :)',
+//                   // maxLines: 2,
+//                   // overflow: TextOverflow.ellipsis,
+//                   textAlign: TextAlign.end,
+//                   style: TextStyle(
+//                     color: Colors.pink,
+//                     // decoration: TextDecoration.none,
+//                     fontStyle: FontStyle.italic,
+//                     // fontFamily: "FontNameHere" ,
+//                     fontWeight: FontWeight.bold,
+//                     // fontWeight: FontWeight.w300,
+//                     fontSize: 17.0,
+//                   ),
+//                 ),
+//               ),
+//               Image.asset("images/waiting.jpg",
+//                   height: 200, width: dimVar.width * 0.5)
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
 
   caution_Text() {
     return const Text(
@@ -177,9 +154,9 @@ class _SettingScreenState extends State<SettingScreen> {
         if (state is UserLogout_Loading_State) {
           return const Center(child: CircularProgressIndicator());
         }
-        return ListTile(
-          title: const Text("Sign out of app"),
-          subtitle: const Text("Temporarily log out of app"),
+        return SettingsTileWidget(
+          icon: Icons.logout,
+          label: 'Logout',
           onTap: () {
             BlocProvider.of<UserLodBloc>(context)
                 .add(UserLogoutButtonPressedEvent());
@@ -223,14 +200,9 @@ class _SettingScreenState extends State<SettingScreen> {
         if (state is UserDeleteUserAccount_Loading_State) {
           return const Center(child: CircularProgressIndicator());
         }
-        return ListTile(
-          // tileColor: Colors.,
-          title: const Text(
-            "Delete your Account !!!",
-            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
-          ),
-          subtitle: const Text(
-              "Your account will be deleted and all your data will be lost"),
+        return SettingsTileWidget(
+          icon: Icons.account_circle_outlined,
+          label: 'Delete your account',
           onTap: () {
             showDialog(
                 context: context,
@@ -238,6 +210,7 @@ class _SettingScreenState extends State<SettingScreen> {
                   return AlertDialog(
                     contentPadding: const EdgeInsets.all(14.0),
                     content: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Padding(
@@ -245,7 +218,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           child: Text(
                             "Warning!",
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Color.fromARGB(255, 13, 0, 88),
                               fontWeight: FontWeight.bold,
                               fontSize: 20.0,
                             ),
@@ -280,6 +253,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
   AppBar myHeader() {
     return AppBar(
+      elevation: 0.5,
       backgroundColor: Colors.white,
       centerTitle: true,
       leading: IconButton(
@@ -307,13 +281,51 @@ class _SettingScreenState extends State<SettingScreen> {
   sp_userAccObj_BlocProvider_STATES() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          // Text('Your Google signIn Id : ${User_sp_repo.get_user()!.gauth_id}'),
-          Text('Your name : ${UserSpRepo.instance.getUser()!.name}'),
-          Text('Your email : ${UserSpRepo.instance.getUser()!.email}'),
-          // Text('Your photoUrl : ${User_sp_repo.get_user()!.photoUrl}'),
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: CircleAvatar(
+                radius: MediaQuery.of(context).size.width * 0.11,
+                backgroundColor: Colors.blue[200],
+                child: CircleAvatar(
+                  radius: MediaQuery.of(context).size.width * 0.1,
+                  backgroundColor: Colors.grey,
+                  // backgroundImage:
+                  //     UserSpRepo.instance.getUser()?.photoUrl == "empty"
+                  //         ? NetworkImage(noPfp)
+                  //         : NetworkImage(UserSpRepo.instance.getUser()!.photoUrl!),
+                  child: ClipOval(
+                    child: CachedNetworkImage(
+                        imageUrl: UserSpRepo.instance.getUser()!.photoUrl!),
+                  ),
+                  // radius: 35.0,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 6,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Text('Your Google signIn Id : ${User_sp_repo.get_user()!.gauth_id}'),
+                Text(
+                  '${UserSpRepo.instance.getUser()!.name}',
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 18),
+                ),
+                Text(
+                  '${UserSpRepo.instance.getUser()!.email}',
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+                // Text('Your photoUrl : ${User_sp_repo.get_user()!.photoUrl}'),
+              ],
+            ),
+          ),
         ],
       ),
     );

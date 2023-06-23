@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ct_single_post/NETWORK_CACHE/friends_posts_cache.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../../API_HELPER/exceptions/exceptions.dart';
@@ -101,6 +102,9 @@ class FetchFollowingPostsBloc<T>
 /*                                     //@                                    */
 /* -------------------------------------------------------------------------- */
           state.fetchFollowingPostsList.addAll(myfinalDisplayList);
+
+          FriendsPostsCache.o.setPosts(state.fetchFollowingPostsList); //@
+
           emit(FetchFollowingPostsList_Loaded_State<T>(
               fetchFollowingPostsList: state.fetchFollowingPostsList));
         }

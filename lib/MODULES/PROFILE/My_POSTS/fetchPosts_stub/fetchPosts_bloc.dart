@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/my_posts_singleton.dart';
+import 'package:ct_single_post/NETWORK_CACHE/my_posts_cache.dart';
 
 import 'package:equatable/equatable.dart';
 
@@ -29,7 +30,7 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
     //@ dummy MyPost ( for each trend)
 
 /* -------------------------------------------------------------------------- */
-/*                        //@ FetchPosts + pagination                              */
+/*                        //@ FetchPosts + pagination                         */
 /* -------------------------------------------------------------------------- */
 
     on<List_FetchPosts_Event<T>>((event, emit) async {
@@ -119,6 +120,7 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
               '*************************** final display list => $myfinalDisplayList');
 
           MyPostSingleton.instance.setMyPostsList(state.fetchPostsList); //@
+          MyPostsCache.o.setMyPostsList(state.fetchPostsList); //@
 
           emit(FetchPostsList_Loaded_State<T>(
               fetchPostsList: state.fetchPostsList));

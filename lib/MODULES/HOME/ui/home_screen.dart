@@ -4,6 +4,7 @@ import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/following_posts_
 import 'package:flutter/material.dart';
 
 import '../../../CONSTANTS/generic_classes.dart';
+import '../../../NETWORK_CACHE/friends_posts_cache.dart';
 import '../logic/fetchFollowingPosts_stub/fetchFollowingPosts_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,18 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   fetchPosts() {
     return FetchFollowingPosts_widget<GFollowingPosts>(
-        listTile: (myObj, isEven) => HomePostTileWidget(
-              isEven: isEven,
-              myObj: myObj,
-              singleObj: (myObj.songResults != null)
-                  ? myObj.songResults
-                  : (myObj.movieResults != null)
-                      ? myObj.movieResults
-                      : (myObj.seriesResults != null)
-                          ? myObj.seriesResults
-                          : (myObj.youtubeSingleResult != null)
-                              ? myObj.youtubeSingleResult
-                              : '',
+        listTile: (myObj, isEven, index) => HomePostTileWidget(
+              post: FriendsPostsCache.o.posts[index],
             ),
         myFetchFollowingPostsFunc: (counter) =>
             FollowingPostsRepo.instance.fetchHomePosts(counter));

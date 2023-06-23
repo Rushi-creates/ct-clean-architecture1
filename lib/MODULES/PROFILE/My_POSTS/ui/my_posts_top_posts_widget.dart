@@ -135,30 +135,35 @@ class MyPostsTopPostsWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
-                // flex: 35,
+                fit: FlexFit.tight,
+                flex: 35,
                 child: Padding(
-                  padding: const EdgeInsets.all(0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(4), //
+                  padding: const EdgeInsets.only(right: 8),
+                  child: AspectRatio(
+                    aspectRatio: 9 / 9,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(4), //
 
-                    // borderRadius: const BorderRadius.only(
-                    //     topLeft: Radius.circular(8),
-                    //     bottomLeft:
-                    //         Radius.circular(8)), // Rounded border radius
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      imageUrl: image,
-                      // placeholder: (context, url) =>
-                      //     const CircularProgressIndicator(),
+                      // borderRadius: const BorderRadius.only(
+                      //     topLeft: Radius.circular(8),
+                      //     bottomLeft:
+                      //         Radius.circular(8)), // Rounded border radius
+                      child: CachedNetworkImage(
+                        fit: BoxFit.cover,
+                        imageUrl: image,
+                        // placeholder: (context, url) =>
+                        //     const CircularProgressIndicator(),
+                      ),
                     ),
                   ),
                 ),
               ),
-              const SizedBox(width: 8),
+              // const SizedBox(width: 8),
               Flexible(
-                // flex: 65,
+                fit: FlexFit.tight,
+                flex: 65,
                 child: Padding(
-                  padding: const EdgeInsets.only(right: 15.0),
+                  padding: const EdgeInsets.only(right: 25.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -168,7 +173,7 @@ class MyPostsTopPostsWidget extends StatelessWidget {
                         maxLines: 2,
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 9,
+                          fontSize: 7,
                         ),
                       ),
                       Text(
@@ -177,7 +182,7 @@ class MyPostsTopPostsWidget extends StatelessWidget {
                         style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
-                          fontSize: 8,
+                          fontSize: 6,
                         ),
                       ),
                     ],

@@ -3,12 +3,13 @@ import 'package:ct_single_post/MODULES/COMMON/WIDGETS/loader_widget.dart';
 import 'package:ct_single_post/MODULES/SEARCH_PROFILE/search_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sliver_snap/widgets/sliver_snap.dart';
 import '../../../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import '../../../../SERIALIZERS/repositories/drf_api/user_repo.dart';
 import 'fetchFollowingPosts_bloc.dart';
 
 class FetchFollowingPosts_widget<T> extends StatefulWidget {
-  final Function(dynamic, dynamic) listTile;
+  final Function(dynamic, dynamic, int) listTile;
   final Future<dynamic> Function(int counter) myFetchFollowingPostsFunc;
 
   const FetchFollowingPosts_widget({
@@ -65,7 +66,14 @@ class _FetchFollowingPosts_widgetState<T>
 
   @override
   Widget build(BuildContext context) {
-    return myBody();
+    return SliverSnap(
+        expandedBackgroundColor: Colors.transparent,
+        collapsedBackgroundColor: Color.fromARGB(255, 255, 255, 255),
+        expandedContentHeight: MediaQuery.of(context).size.height * 0.27,
+        expandedContent: myAppBar(context),
+        collapsedContent: collapsedAppBar(),
+        body: myBody());
+
     // return Scaffold(
     //   backgroundColor: Colors.white,
     //   appBar: myHeader(),
@@ -102,7 +110,6 @@ class _FetchFollowingPosts_widgetState<T>
           controller: scrollController,
           child: Column(
             children: [
-              myAppBar(context),
               const SizedBox(height: 10),
               // bodyTitle(),
               // SizedBox(height: 15),
@@ -115,10 +122,10 @@ class _FetchFollowingPosts_widgetState<T>
   }
 
   bodyTitle() {
-    return Align(
+    return const Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 0),
+        padding: EdgeInsets.only(left: 0),
         child: Text(
           'Check up with what \nyour friends watched recently.',
           textAlign: TextAlign.left,
@@ -133,21 +140,49 @@ class _FetchFollowingPosts_widgetState<T>
     );
   }
 
+  collapsedAppBar() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0),
+      child: Row(
+        children: [
+          const Text(
+            'Current Trends',
+            style: TextStyle(
+              color: Color.fromARGB(255, 0, 72, 121),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
+          ),
+          const Spacer(),
+          searchProfileIcon(context, isCollapsed: true)
+        ],
+      ),
+    );
+  }
+
   myAppBar(context) {
     return Container(
-      decoration: const BoxDecoration(
-          image: DecorationImage(
+      decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 7,
+              offset: const Offset(0, 3), // changes position of shadow
+            ),
+          ],
+          image: const DecorationImage(
               image: AssetImage(
                 ImagePaths.bgCurves,
               ),
               alignment: Alignment.topCenter,
               fit: BoxFit.cover),
-          gradient: LinearGradient(colors: [
+          gradient: const LinearGradient(colors: [
             Color(0xff6DBDFF),
             Color(0xff4B9BFF),
           ]),
           // border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20)),
           color: Colors.white),
@@ -186,7 +221,7 @@ class _FetchFollowingPosts_widgetState<T>
                           fontSize: 15,
                         ),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       bodyTitle()
                     ],
                   ),
@@ -218,7 +253,7 @@ class _FetchFollowingPosts_widgetState<T>
     );
   }
 
-  searchProfileIcon(context) {
+  searchProfileIcon(context, {bool isCollapsed = false}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: IconButton(
@@ -227,11 +262,11 @@ class _FetchFollowingPosts_widgetState<T>
               return const SearchProfileScreen();
             }));
           },
-          icon: const Icon(
+          icon: Icon(
             Icons.search,
             // weight: 30,
             size: 30,
-            color: Colors.white,
+            color: isCollapsed ? Color.fromARGB(255, 0, 72, 121) : Colors.white,
           )),
     );
   }
@@ -262,7 +297,8 @@ class _FetchFollowingPosts_widgetState<T>
             scrollDirection: Axis.vertical,
             itemCount: listArg.length,
             itemBuilder: (context, i) {
-              return widget.listTile(listArg[i], (i % 4 == 0 ? true : false));
+              return widget.listTile(
+                  listArg[i], (i % 4 == 0 ? true : false), i);
             },
           );
   }

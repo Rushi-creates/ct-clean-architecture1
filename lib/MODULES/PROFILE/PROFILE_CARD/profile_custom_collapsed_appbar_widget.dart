@@ -4,6 +4,7 @@ import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:flutter/material.dart';
 import '../../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import '../../../SERIALIZERS/repositories/drf_api/user_repo.dart';
+import '../../SETTINGS/Settings_screen.dart';
 
 class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
   const ProfileCustomCollapsedAppBarWidget({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
 /* -------------------------------------------------------------------------- */
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
 /* -------------------------------------------------------------------------- */
 /*                                     //!                                    */
@@ -115,7 +116,19 @@ class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
 /* -------------------------------------------------------------------------- */
 /*                                     //!                                    */
 /* -------------------------------------------------------------------------- */
-        followButtonUi(context)
+        // followButtonUi(context)
+        ProfileScreenSingleton.instance.isFromSearchScreen
+            ? Container()
+            : IconButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const SettingScreen();
+                  }));
+                },
+                icon: Icon(
+                  Icons.more_vert,
+                  color: Color.fromARGB(255, 107, 107, 107),
+                ))
       ],
     );
   }
@@ -123,6 +136,29 @@ class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
 /* -------------------------------------------------------------------------- */
 /*                                 //@ button                                 */
 /* -------------------------------------------------------------------------- */
+
+  buttonContainer(context, Widget child) {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.15,
+          height: MediaQuery.of(context).size.height * 0.036,
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [
+                Color.fromARGB(255, 178, 120, 255),
+                Color.fromARGB(255, 112, 45, 255),
+              ],
+              // colors: [Colors.purple, Colors.deepPurple],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+            borderRadius: BorderRadius.circular(7.0),
+          ),
+          child: child,
+        ));
+  }
+
   followButtonUi(context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),

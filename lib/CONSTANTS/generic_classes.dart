@@ -20,4 +20,6 @@ class GMovie {}
 
 class GSeries {}
 
-class GYoutube {}
+class GYoutube {
+  static bool fromTrending = false;
+}

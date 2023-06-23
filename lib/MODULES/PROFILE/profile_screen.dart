@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
         child: SliverSnap(
             snap: false,
-            collapsedBackgroundColor: Colors.white,
+            collapsedBackgroundColor: Color.fromARGB(255, 245, 245, 245),
             expandedBackgroundColor: Colors.transparent,
             expandedContentHeight: MediaQuery.of(context).size.height * 0.33,
 

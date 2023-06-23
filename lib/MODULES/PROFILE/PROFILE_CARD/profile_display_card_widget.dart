@@ -30,7 +30,7 @@ class ProfileDisplayCardWidget extends StatelessWidget {
                   //@
                   Padding(
                     padding:
-                        const EdgeInsets.only(left: 30.0, top: 30, right: 30),
+                        const EdgeInsets.only(left: 30.0, top: 10, right: 30),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

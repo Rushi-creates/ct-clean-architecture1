@@ -6,18 +6,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../CONSTANTS/generic_classes.dart';
 import '../../../../../SERIALIZERS/models/my_post.dart';
+import '../../../create_post_singleton.dart';
 import 'MyPost_cud_logic/MyPost_cud_bloc.dart';
 
 class CreatePostButtonWidget<T> extends StatelessWidget {
   final headingText;
   final apiId;
-  final String lovedFactText;
+  // final String lovedFactText;
   final pickedDate;
   const CreatePostButtonWidget({
     required this.pickedDate,
     required this.headingText,
     required this.apiId,
-    required this.lovedFactText,
+    // required this.lovedFactText,
   });
   @override
   Widget build(BuildContext context) {
@@ -111,13 +112,9 @@ class CreatePostButtonWidget<T> extends StatelessWidget {
                         trendType: headingText,
                         watchedAt: pickedDate,
                         // message: 'empty',
-                        lovedFact: lovedFactText,
+                        lovedFact:
+                            CreatePostSingleton.o.lovedFactTextController.text,
                         createdAt: DateTime.now().toString());
-
-                    print('888888 = $myPost');
-                    print('888888 = ${myPost.lovedFact}');
-                    print('888888 = ${myPost.lovedFact.length}');
-                    print('888888 = ${myPost.lovedFact.runtimeType}');
 
                     BlocProvider.of<MyPostCudBloc>(context)
                         .add(MyPost_create_onButtonPressed_Event(myPost));

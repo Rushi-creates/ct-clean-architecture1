@@ -50,7 +50,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
     if (scrollController.offset >= scrollController.position.maxScrollExtent &&
         !scrollController.position.outOfRange) {
       print('list endedddd');
-      Future.delayed(Duration(milliseconds: 100), () {
+      Future.delayed(const Duration(milliseconds: 100), () {
         BlocProvider.of<FetchBloc<T>>(context)
             .add(List_Fetch_Event<T>(widget.myFetchFunc));
       });
@@ -127,7 +127,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
       //     }),
       // automaticallyImplyLeading: true,  //removes default back arrow on appbar
 
-      title: Text(
+      title: const Text(
         'Home', //give here appBar title
         style: TextStyle(color: Colors.black
             // fontWeight: FontWeight.bold
@@ -142,7 +142,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
                 BlocProvider.of<FetchBloc<T>>(context)
                     .add(List_Fetch_Event<T>(widget.myFetchFunc));
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.add,
                 color: Colors.black,
               )),
@@ -156,7 +156,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
                 BlocProvider.of<FetchBloc<T>>(context)
                     .add(List_Fetch_Event<T>(widget.myFetchFunc));
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.refresh,
                 color: Colors.black,
               )),
@@ -178,12 +178,27 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
 
   buildFetchList(List listArg) {
     return listArg.isEmpty
-        ? Text('empty')
+        ? Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.hourglass_bottom,
+                  size: 80,
+                  color: Colors.grey[200],
+                ),
+                const Text(
+                  'No results',
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ],
+            ),
+          )
         : widget.customBuilder == null
             ? ListView.builder(
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 scrollDirection: Axis.vertical,
                 itemCount: listArg.length,
                 itemBuilder: (context, i) {
@@ -197,8 +212,8 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
 
   deafultListTile() {
     return ListTile(
-      title: Text("Title"),
-      subtitle: Text("SubTitle"),
+      title: const Text("Title"),
+      subtitle: const Text("SubTitle"),
       onTap: () {
         return null;
       },
@@ -256,7 +271,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
         children: [
           Text(
             'Connection error or \n Error: $error',
-            style: TextStyle(color: Colors.red),
+            style: const TextStyle(color: Colors.red),
           ),
           tryAgainButton(context)
         ],
@@ -266,7 +281,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
 
   tryAgainButton(context) {
     return TextButton(
-      child: Text(
+      child: const Text(
         "Try again",
         style: TextStyle(color: Colors.white),
       ),
@@ -294,7 +309,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
 
   loadMoreButton(context) {
     return TextButton(
-      child: Text(
+      child: const Text(
         "Load more ",
         style: TextStyle(color: Colors.white),
       ),

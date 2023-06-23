@@ -33,6 +33,7 @@ class SearchProfileSearchBarWidget extends StatelessWidget {
 
   searchTextField(context) {
     return TextField(
+      cursorColor: Colors.grey,
       autofocus: true,
       // onChanged: (value) {
       //   // to refresh the previous search lists
@@ -41,9 +42,14 @@ class SearchProfileSearchBarWidget extends StatelessWidget {
       // },
       controller: searchProfileController,
       decoration: InputDecoration(
-          prefixIcon: Icon(Icons.shopping_bag_outlined),
+          hintStyle:
+              TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
+          prefixIcon: Icon(
+            Icons.person,
+            color: Colors.blue[900],
+          ),
           suffixIcon: performSearchButtonUi(context),
-          hintText: 'Search...',
+          hintText: 'Search users',
           border: InputBorder.none),
     );
   }

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/CONSTANTS/api_endpoints/tmdb_movie_endpoints.dart';
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/date_picker_widget.dart';
+import 'package:ct_single_post/MODULES/CREATE_POST/create_post_singleton.dart';
 import 'package:ct_single_post/MODULES/CREATE_POST/ui/FORM/create_post_button_widget/create_post_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,7 +23,6 @@ class CreatePostFormWidget<T> extends StatefulWidget {
 }
 
 class _CreatePostFormWidgetState<T> extends State<CreatePostFormWidget<T>> {
-  TextEditingController lovedFactTextController = TextEditingController();
   String pickedDate = '2023';
 
 //! imp strings ( since stored same in database)
@@ -73,7 +73,7 @@ class _CreatePostFormWidgetState<T> extends State<CreatePostFormWidget<T>> {
                     })),
 
                 //
-                customTextFieldUi(lovedFactTextController,
+                customTextFieldUi(CreatePostSingleton.o.lovedFactTextController,
                     'Share your\nthoughts', Icons.favorite),
               ],
             ))
@@ -83,12 +83,17 @@ class _CreatePostFormWidgetState<T> extends State<CreatePostFormWidget<T>> {
         //@ button
         CreatePostButtonWidget<T>(
           pickedDate: pickedDate,
-          lovedFactText: lovedFactTextController.text,
+          // lovedFactText: CreatePostSingleton.o.lovedFactTextController.text,
           headingText: headingName,
           apiId: T == GSong
               ? widget.trend.trackId.toString()
               : T == GYoutube
-                  ? widget.trend.id
+                  // diff between trending, and yt reults
+                  ? (widget.trend.id is String)
+                      ? widget.trend.id
+                      : widget.trend.id.videoId
+
+                  //
                   : widget.trend.id.toString(),
         )
       ],
