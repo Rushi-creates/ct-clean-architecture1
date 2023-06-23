@@ -11,7 +11,7 @@ import 'MyPost_cud_logic/MyPost_cud_bloc.dart';
 class CreatePostButtonWidget<T> extends StatelessWidget {
   final headingText;
   final apiId;
-  final lovedFactText;
+  final String lovedFactText;
   final pickedDate;
   const CreatePostButtonWidget({
     required this.pickedDate,
@@ -113,6 +113,11 @@ class CreatePostButtonWidget<T> extends StatelessWidget {
                         // message: 'empty',
                         lovedFact: lovedFactText,
                         createdAt: DateTime.now().toString());
+
+                    print('888888 = $myPost');
+                    print('888888 = ${myPost.lovedFact}');
+                    print('888888 = ${myPost.lovedFact.length}');
+                    print('888888 = ${myPost.lovedFact.runtimeType}');
 
                     BlocProvider.of<MyPostCudBloc>(context)
                         .add(MyPost_create_onButtonPressed_Event(myPost));

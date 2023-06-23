@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/CONSTANTS/api_endpoints/tmdb_movie_endpoints.dart';
-import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_post_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../SERIALIZERS/models/movie_result.dart';
@@ -8,6 +7,7 @@ import '../../../SERIALIZERS/models/my_post.dart';
 import '../../../SERIALIZERS/models/series_result.dart';
 import '../../../SERIALIZERS/models/songs_result.dart';
 import '../../../SERIALIZERS/models/youtube_single_result.dart';
+import '../../PROFILE/My_POSTS/ui/my_posts_widget/my_post_detail_screen.dart';
 
 class HomePostTileWidget extends StatelessWidget {
   final singleObj;
@@ -30,9 +30,17 @@ class HomePostTileWidget extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 0.39,
         child: Padding(
-          padding: const EdgeInsets.only(left: 18.0, right: 18.0, bottom: 15.0),
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 15.0),
           child: Container(
               decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      // spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: const Offset(1, 1), // changes position of shadow
+                    ),
+                  ],
                   // border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(11),
                   color: Colors.white),

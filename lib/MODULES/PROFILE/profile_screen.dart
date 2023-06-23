@@ -1,4 +1,6 @@
-import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_widget.dart';
+import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
+import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_top_posts_widget.dart';
+import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_widget/my_posts_chips_row_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/follow_unfollow_logic/follow_unfollow_bloc.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_custom_collapsed_appbar_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_display_card_widget.dart';
@@ -9,6 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sliver_snap/widgets/sliver_snap.dart';
 
 import '../../SERIALIZERS/models/follow_account.dart';
+import '../../SERIALIZERS/repositories/drf_api/my_post_repo.dart';
+import 'My_POSTS/fetchPosts_stub/fetchPosts_bloc.dart';
+import 'My_POSTS/ui/my_posts_widget/my_posts_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -25,9 +30,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+
+    //
     FollowAccount followAccount = FollowAccount(
         my_profile_fk: ProfileSpRepo.instance.getProfile()!.p_uid!,
         other_profile_fk: ProfileScreenSingleton.instance.profileObj.p_uid!);
+
+    //
     BlocProvider.of<FollowUnfollowBloc>(context)
         .add(CheckIfFollowsEvent(followAccount));
   }
@@ -41,28 +50,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: Colors.white,
 
       // backgroundColor: const Color(0xfff5f7f9),
-      body: SliverSnap(
-        collapsedBackgroundColor: Colors.white,
-        expandedBackgroundColor: Colors.transparent,
-        expandedContentHeight: MediaQuery.of(context).size.height * 0.33,
+      body:
+
+//
+
+          RefreshIndicator(
+        onRefresh: () async {
+          BlocProvider.of<FetchPostsBloc<GMyPosts>>(context)
+              .add(List_Refresh_Event<GMyPosts>());
+
+          BlocProvider.of<FetchPostsBloc<GMyPosts>>(context).add(
+              List_FetchPosts_Event<GMyPosts>((counter) => MyPostRepo.instance
+                  .fetchProp(
+                      counter,
+                      ProfileScreenSingleton.instance.profileObj.p_uid
+                          .toString())));
+        },
 
 /* -------------------------------------------------------------------------- */
-/*                                //@ Expnaded                                */
+/*                                     //!                                    */
 /* -------------------------------------------------------------------------- */
 
-        expandedContent: const ProfileDisplayCardWidget(),
+        child: SliverSnap(
+            snap: false,
+            collapsedBackgroundColor: Colors.white,
+            expandedBackgroundColor: Colors.transparent,
+            expandedContentHeight: MediaQuery.of(context).size.height * 0.33,
 
-/* -------------------------------------------------------------------------- */
-/*                                //@ Collapsed                               */
-/* -------------------------------------------------------------------------- */
+            /* -------------------------------------------------------------------------- */
+            /*                                //@ Expnaded                                */
+            /* -------------------------------------------------------------------------- */
 
-        collapsedContent: const ProfileCustomCollapsedAppBarWidget(),
+            expandedContent: const ProfileDisplayCardWidget(),
 
-/* -------------------------------------------------------------------------- */
-/*                                  //@ body                                  */
-/* -------------------------------------------------------------------------- */
+            /* -------------------------------------------------------------------------- */
+            /*                                //@ Collapsed                               */
+            /* -------------------------------------------------------------------------- */
 
-        body: const MyPostsWidget(),
+            collapsedContent: const ProfileCustomCollapsedAppBarWidget(),
+
+            /* -------------------------------------------------------------------------- */
+            /*                                  //@ body                                  */
+            /* -------------------------------------------------------------------------- */
+
+            body: const Column(
+              children: [
+                MyPostsChipsRowWidget(),
+                MyPostsTopPostsWidget(),
+                SizedBox(height: 8),
+                MyPostsWidget(),
+              ],
+            )),
       ),
     );
   }

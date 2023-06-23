@@ -62,6 +62,9 @@ class MyPostRepo {
   create(modelObj) async {
     var rawData =
         await DjangoHelper.instance.add(DjangoEndpoints.myPost_add, modelObj);
+
+    print('from mypost repo = $rawData');
+    print('from mypost repo = ${MyPost.fromMap(rawData)}');
     return MyPost.fromMap(rawData);
   }
 

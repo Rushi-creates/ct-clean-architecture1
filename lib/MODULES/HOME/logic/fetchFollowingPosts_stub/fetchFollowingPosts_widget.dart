@@ -1,3 +1,4 @@
+import 'package:ct_single_post/CONSTANTS/image_paths.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/loader_widget.dart';
 import 'package:ct_single_post/MODULES/SEARCH_PROFILE/search_profile_screen.dart';
 import 'package:flutter/material.dart';
@@ -102,7 +103,7 @@ class _FetchFollowingPosts_widgetState<T>
           child: Column(
             children: [
               myAppBar(context),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               // bodyTitle(),
               // SizedBox(height: 15),
               fetchFollowingPostsListStates(),
@@ -119,11 +120,12 @@ class _FetchFollowingPosts_widgetState<T>
       child: Padding(
         padding: const EdgeInsets.only(left: 0),
         child: Text(
-          'Check up with what your friends \nwatched recently :',
+          'Check up with what \nyour friends watched recently.',
           textAlign: TextAlign.left,
           style: TextStyle(
             // fontWeight: FontWeight.bold,
-            color: Colors.grey[500],
+            color: Colors.white,
+            // color: Colors.grey[500],
             fontSize: 12,
           ),
         ),
@@ -134,6 +136,16 @@ class _FetchFollowingPosts_widgetState<T>
   myAppBar(context) {
     return Container(
       decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                ImagePaths.bgCurves,
+              ),
+              alignment: Alignment.topCenter,
+              fit: BoxFit.cover),
+          gradient: LinearGradient(colors: [
+            Color(0xff6DBDFF),
+            Color(0xff4B9BFF),
+          ]),
           // border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
@@ -148,6 +160,7 @@ class _FetchFollowingPosts_widgetState<T>
                 const Text(
                   'Current Trends',
                   style: TextStyle(
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 24,
                   ),
@@ -158,16 +171,24 @@ class _FetchFollowingPosts_widgetState<T>
             ),
             const SizedBox(height: 10),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
-                  child: Text(
-                    'Welcome back!\n${ProfileSpRepo.instance.getProfile()!.username!.toUpperCase()}, explore the feed.',
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Welcome back!\n${ProfileSpRepo.instance.getProfile()!.username!.toUpperCase()}, explore the feed.',
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      bodyTitle()
+                    ],
                   ),
                 ),
                 // SizedBox(width: 20,),
@@ -175,19 +196,22 @@ class _FetchFollowingPosts_widgetState<T>
                   child: Padding(
                     padding: const EdgeInsets.only(left: 50),
                     child: CircleAvatar(
-                      radius: 50,
-                      backgroundImage: NetworkImage(UserSpRepo.instance
-                                  .getUser()!
-                                  .photoUrl ==
-                              'empty'
-                          ? 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'
-                          : UserSpRepo.instance.getUser()!.photoUrl!),
+                      radius: 55,
+                      backgroundColor: Colors.white,
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage(UserSpRepo.instance
+                                    .getUser()!
+                                    .photoUrl ==
+                                'empty'
+                            ? 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'
+                            : UserSpRepo.instance.getUser()!.photoUrl!),
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
-            bodyTitle()
           ],
         ),
       ),
@@ -205,7 +229,9 @@ class _FetchFollowingPosts_widgetState<T>
           },
           icon: const Icon(
             Icons.search,
-            color: Colors.black,
+            // weight: 30,
+            size: 30,
+            color: Colors.white,
           )),
     );
   }

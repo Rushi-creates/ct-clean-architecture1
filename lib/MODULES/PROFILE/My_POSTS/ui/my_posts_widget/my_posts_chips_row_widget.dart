@@ -4,7 +4,7 @@ import 'package:ct_single_post/MODULES/COMMON/WIDGETS/chips_widget/ui/chip_widge
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../CONSTANTS/image_paths.dart';
+import '../../../../../CONSTANTS/image_paths.dart';
 
 class MyPostsChipsRowWidget extends StatelessWidget {
   const MyPostsChipsRowWidget({super.key});
@@ -36,8 +36,8 @@ class MyPostsChipsRowWidget extends StatelessWidget {
                 nonActiveWidget: singleButton(context,
                     index: 0,
                     label: 'All',
-                    color1: Colors.white,
-                    color2: Colors.white,
+                    color1: Color.fromARGB(255, 255, 255, 255),
+                    color2: Color.fromARGB(255, 250, 250, 250),
                     boxShadowColor: Colors.transparent,
                     iconPath: ImagePaths.seriesChipIconBlack)),
 
@@ -56,8 +56,8 @@ class MyPostsChipsRowWidget extends StatelessWidget {
                 nonActiveWidget: singleButton(context,
                     index: 1,
                     label: 'Song',
-                    color1: Colors.white,
-                    color2: Colors.white,
+                    color1: Color.fromARGB(255, 255, 255, 255),
+                    color2: Color.fromARGB(255, 250, 250, 250),
                     boxShadowColor: Colors.transparent,
                     iconPath: ImagePaths.songChipIconBlack)),
 
@@ -74,8 +74,8 @@ class MyPostsChipsRowWidget extends StatelessWidget {
               nonActiveWidget: singleButton(context,
                   index: 2,
                   label: 'Movie',
-                  color1: Colors.white,
-                  color2: Colors.white,
+                  color1: Color.fromARGB(255, 255, 255, 255),
+                  color2: Color.fromARGB(255, 250, 250, 250),
                   boxShadowColor: Colors.transparent,
                   iconPath: ImagePaths.movieChipIconBlack),
             ),
@@ -93,8 +93,8 @@ class MyPostsChipsRowWidget extends StatelessWidget {
               nonActiveWidget: singleButton(context,
                   index: 3,
                   label: 'Youtube',
-                  color1: Colors.white,
-                  color2: Colors.white,
+                  color1: Color.fromARGB(255, 255, 255, 255),
+                  color2: Color.fromARGB(255, 250, 250, 250),
                   boxShadowColor: Colors.transparent,
                   iconPath: ImagePaths.seriesChipIconBlack),
             ),
@@ -112,8 +112,8 @@ class MyPostsChipsRowWidget extends StatelessWidget {
               nonActiveWidget: singleButton(context,
                   index: 4,
                   label: 'Series',
-                  color1: Colors.white,
-                  color2: Colors.white,
+                  color1: Color.fromARGB(255, 255, 255, 255),
+                  color2: Color.fromARGB(255, 250, 250, 250),
                   boxShadowColor: Colors.transparent,
                   iconPath: ImagePaths.youtubeChipIconBlack),
             ),
@@ -185,8 +185,15 @@ class MyPostsChipsRowWidget extends StatelessWidget {
                   // maxLines: 2,
                   // overflow: TextOverflow.ellipsis,
                   // textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.black,
+                  style: TextStyle(
+                    color: Colors.grey,
+                    shadows: [
+                      Shadow(
+                        color: boxShadowColor,
+                        blurRadius: 2,
+                        offset: Offset(2, 2),
+                      ),
+                    ],
                     // decoration: TextDecoration.none,
                     // fontStyle: FontStyle.italic,
                     // fontFamily: "FontNameHere" ,

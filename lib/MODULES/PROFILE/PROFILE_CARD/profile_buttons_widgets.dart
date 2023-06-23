@@ -23,7 +23,15 @@ class ProfileEditProfileButtonWidget extends StatelessWidget {
         },
         child: Container(
           decoration: const BoxDecoration(
-              color: Color(0xFF6DBDFF),
+              // color: Color(0xFF6DBDFF),
+              gradient: LinearGradient(
+                colors: [Color(0xFF6DBDFF), Color(0xFF4B9BFF)],
+                // colors: [Color(0xFF6DBDFF), Color(0xFFA0E6FF)],
+                // colors: [Color(0xFF6DBDFF), Color(0xFF1756FF)],
+                // colors: [Color(0xFF6DBDFF), Color(0xFF2D95FF)],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
               borderRadius: BorderRadius.all(Radius.circular(8))),
           child: const Center(
             child: Padding(

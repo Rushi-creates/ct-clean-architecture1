@@ -1,11 +1,10 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
-import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_post_common_tile.dart';
-import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_posts_chips_row_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/my_post_repo.dart';
 import 'package:ct_single_post/SERIALIZERS/repositories/drf_api/profile_repo.dart';
 import 'package:flutter/material.dart';
-import '../fetchPosts_stub/fetchPosts_widget.dart';
+import '../../fetchPosts_stub/fetchPosts_widget.dart';
+import 'my_post_common_tile.dart';
 
 class MyPostsWidget extends StatelessWidget {
   const MyPostsWidget({super.key});
@@ -18,7 +17,7 @@ class MyPostsWidget extends StatelessWidget {
 /*                                     //@                                    */
 /* -------------------------------------------------------------------------- */
 
-        const MyPostsChipsRowWidget(),
+        // const MyPostsChipsRowWidget(),
 
 /* -------------------------------------------------------------------------- */
 /*                                     //@                                    */

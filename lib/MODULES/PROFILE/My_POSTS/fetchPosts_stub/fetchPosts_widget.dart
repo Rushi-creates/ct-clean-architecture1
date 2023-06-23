@@ -1,5 +1,6 @@
 import 'package:ct_single_post/CONSTANTS/generic_classes.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/loader_widget.dart';
+import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/my_posts_singleton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -10,6 +11,7 @@ import 'fetchPosts_bloc.dart';
 class FetchPosts_widget<T> extends StatefulWidget {
   final Function(dynamic) listTile;
   final Future<dynamic> Function(int counter) myFetchPostsFunc;
+  final bool fetchAutomatically;
   final isFromSearchScreen;
 
   const FetchPosts_widget({
@@ -17,6 +19,7 @@ class FetchPosts_widget<T> extends StatefulWidget {
     required this.listTile,
     required this.myFetchPostsFunc,
     required this.isFromSearchScreen,
+    this.fetchAutomatically = true,
   }) : super(key: key);
 
   @override
@@ -176,7 +179,8 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
           // (state.fetchPostsList.first is YoutubeModel)
           //     ? buildFetchPostsList_ForYT(state.fetchPostsList)
           //     :
-          chipsState(state.fetchPostsList);
+          // chipsState(state.fetchPostsList);
+          chipsState();
     });
   }
 
@@ -195,21 +199,25 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
   //         );
   // }
 
-  chipsState(List listArg) {
+  chipsState() {
     return BlocBuilder<ChipsCubit<GMyPostsChips>, int?>(
         builder: (context, state) {
       if (state == 0) {
-        return buildFetchPostsList(listArg, 'All');
+        return buildFetchPostsList(MyPostSingleton.instance.myPostsList, 'All');
       } else if (state == 1) {
-        return buildFetchPostsList(listArg, 'Songs');
+        return buildFetchPostsList(
+            MyPostSingleton.instance.myPostsSongsList, 'Songs');
       } else if (state == 2) {
-        return buildFetchPostsList(listArg, 'Movies');
+        return buildFetchPostsList(
+            MyPostSingleton.instance.myPostsMoviesList, 'Movies');
       } else if (state == 3) {
-        return buildFetchPostsList(listArg, 'Youtube');
+        return buildFetchPostsList(
+            MyPostSingleton.instance.myPostsYoutubeList, 'Youtube');
       } else if (state == 4) {
-        return buildFetchPostsList(listArg, 'Series');
+        return buildFetchPostsList(
+            MyPostSingleton.instance.myPostsSeriesList, 'Series');
       }
-      return buildFetchPostsList(listArg, 'All');
+      return buildFetchPostsList(MyPostSingleton.instance.myPostsList, 'All');
     });
   }
 
@@ -228,13 +236,14 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
             ),
           )
         : MasonryGridView.count(
-            padding: EdgeInsets.zero,
+            // padding: EdgeInsets.zero,
+            padding: EdgeInsets.symmetric(horizontal: 8),
             physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             crossAxisCount: 2,
-            mainAxisSpacing: 4,
-            crossAxisSpacing: 4,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
             itemCount: listArg.length,
             itemBuilder: (context, i) {
               //    var indexState =
@@ -259,19 +268,19 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
 
                 return Column(
                   children: [
-                    i == 1
-                        ? const SizedBox(height: 50)
-                        : const SizedBox(height: 0),
                     widget.listTile(sortedObj),
+                    i == 1
+                        ? const SizedBox(height: 0)
+                        : const SizedBox(height: 0),
                   ],
                 );
               } else if (sorting == 'All') {
                 return Column(
                   children: [
-                    i == 1
-                        ? const SizedBox(height: 50)
-                        : const SizedBox(height: 0),
                     widget.listTile(listArg[i]),
+                    i == 1
+                        ? const SizedBox(height: 0)
+                        : const SizedBox(height: 0),
                   ],
                 );
               }

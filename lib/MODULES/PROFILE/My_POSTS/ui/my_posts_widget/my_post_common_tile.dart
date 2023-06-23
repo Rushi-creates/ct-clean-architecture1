@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/CONSTANTS/api_endpoints/tmdb_movie_endpoints.dart';
-import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/ui/my_post_detail_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../SERIALIZERS/models/movie_result.dart';
-import '../../../../SERIALIZERS/models/my_post.dart';
-import '../../../../SERIALIZERS/models/series_result.dart';
-import '../../../../SERIALIZERS/models/songs_result.dart';
-import '../../../../SERIALIZERS/models/youtube_single_result.dart';
+import '../../../../../SERIALIZERS/models/movie_result.dart';
+import '../../../../../SERIALIZERS/models/my_post.dart';
+import '../../../../../SERIALIZERS/models/series_result.dart';
+import '../../../../../SERIALIZERS/models/songs_result.dart';
+import '../../../../../SERIALIZERS/models/youtube_single_result.dart';
+import 'my_post_detail_screen.dart';
 
 class MyPostCommonTile extends StatelessWidget {
   final singleTrendObj;
@@ -28,7 +28,7 @@ class MyPostCommonTile extends StatelessWidget {
       child: ClipRRect(
           borderRadius: BorderRadius.circular(12.0),
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               // borderRadius: BorderRadius.circular(30.0),
               shape: BoxShape.rectangle,
               color: Colors.grey,
@@ -72,7 +72,7 @@ class MyPostCommonTile extends StatelessWidget {
                   //
                   SizedBox(
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                           gradient: LinearGradient(
                               colors: [
                             Colors.transparent,
@@ -124,7 +124,7 @@ class MyPostCommonTile extends StatelessWidget {
               // maxLines: 2,
               // overflow: TextOverflow.ellipsis,
               // textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 // decoration: TextDecoration.none,
                 // fontStyle: FontStyle.italic,
@@ -161,7 +161,7 @@ class MyPostCommonTile extends StatelessWidget {
               // maxLines: 2,
               // overflow: TextOverflow.ellipsis,
               // textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 // decoration: TextDecoration.none,
                 // fontStyle: FontStyle.italic,
@@ -184,7 +184,7 @@ class MyPostCommonTile extends StatelessWidget {
                     // maxLines: 2,
                     // overflow: TextOverflow.ellipsis,
                     // textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       // decoration: TextDecoration.none,
                       // fontStyle: FontStyle.italic,
@@ -202,7 +202,7 @@ class MyPostCommonTile extends StatelessWidget {
                     // maxLines: 2,
                     // overflow: TextOverflow.ellipsis,
                     // textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       // decoration: TextDecoration.none,
                       // fontStyle: FontStyle.italic,

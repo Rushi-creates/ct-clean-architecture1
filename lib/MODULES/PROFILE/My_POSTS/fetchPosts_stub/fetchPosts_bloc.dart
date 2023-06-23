@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ct_single_post/MODULES/PROFILE/My_POSTS/my_posts_singleton.dart';
 
 import 'package:equatable/equatable.dart';
 
@@ -116,6 +117,8 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
           state.fetchPostsList.addAll(myfinalDisplayList);
           print(
               '*************************** final display list => $myfinalDisplayList');
+
+          MyPostSingleton.instance.setMyPostsList(state.fetchPostsList); //@
 
           emit(FetchPostsList_Loaded_State<T>(
               fetchPostsList: state.fetchPostsList));
