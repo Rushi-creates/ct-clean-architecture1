@@ -20,7 +20,8 @@ class ExpandableFabWidget extends StatelessWidget {
       padding: const EdgeInsets.only(right: 12.0, bottom: 10),
       child: ExpandableFab(
         // childrenOffset: Offset(4, 12),
-        backgroundColor: Colors.black,
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        // backgroundColor: Color.fromARGB(255, 132, 200, 255),
         collapsedFabSize: ExpandableFabSize.regular,
         expandedFabSize: ExpandableFabSize.regular,
         // key: key,
@@ -31,7 +32,17 @@ class ExpandableFabWidget extends StatelessWidget {
           BlocProvider.of<ChipsCubit<GBottomBar>>(context).selectChip(2);
         },
         fanAngle: 90,
-        child: const Icon(Icons.add),
+        // child: CircleAvatar(
+        //   backgroundColor: Color.fromARGB(255, 159, 220, 255),
+        //   child: const Icon(
+        //     Icons.add,
+        //     color: Color.fromARGB(255, 0, 40, 110),
+        //   ),
+        // ),
+        child: Icon(
+          Icons.add,
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
         // foregroundColor: Colors.black,
         // backgroundColor: Colors.green,
         closeButtonStyle: const ExpandableFabCloseButtonStyle(

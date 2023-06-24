@@ -93,7 +93,8 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
 //
                 ChipWidget<GBottomBar>(
                     index: 0,
-                    activeWidget: myIcon(Icons.home, Colors.blue[900]),
+                    activeWidget: myIcon(Icons.home_rounded,
+                        const Color.fromARGB(255, 27, 100, 209)),
                     nonActiveWidget: myIcon(Icons.home_outlined, Colors.grey)),
                 const VerticalDivider(color: Colors.white, width: 40),
 
@@ -101,7 +102,8 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
 
                 ChipWidget<GBottomBar>(
                     index: 1,
-                    activeWidget: myIcon(Icons.person, Colors.blue[900]),
+                    activeWidget: myIcon(
+                        Icons.person, const Color.fromARGB(255, 27, 100, 209)),
                     nonActiveWidget: myIcon(Icons.person_outline, Colors.grey)),
                 const VerticalDivider(color: Colors.white, width: 40),
 
@@ -118,14 +120,62 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
   myIcon(IconData icon, Color? color) {
     return FittedBox(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Icon(
-          icon,
-          color: color,
-        ),
-      ),
+          padding: const EdgeInsets.all(8.0),
+          child: ShaderMask(
+            shaderCallback: (Rect bounds) {
+              return LinearGradient(
+                colors: [
+                  color!,
+                  Color.fromARGB(255, 196, 229, 255),
+                ],
+                end: Alignment.topRight,
+                begin: Alignment.bottomLeft,
+              ).createShader(bounds);
+            },
+            child: Icon(
+              icon,
+              color: Colors.white,
+            ),
+          )),
     );
   }
+
+//     ChipWidget<GBottomBar>(
+//                     index: 0,
+//                     activeWidget: activeWidget(ImagePaths.homeOnIcon, 'Home'),
+//                     nonActiveWidget: nonActiveWidget(ImagePaths.homeOffIcon)),
+
+// //
+
+//                 ChipWidget<GBottomBar>(
+//                     index: 1,
+//                     activeWidget:
+//                         activeWidget(ImagePaths.profileOnIcon, 'Profile'),
+//                     nonActiveWidget:
+//                         nonActiveWidget(ImagePaths.profileOffIcon)),
+
+//   Widget nonActiveWidget(String imagePath) {
+//     return Container(
+//       decoration: BoxDecoration(
+//           image: DecorationImage(
+//         image: AssetImage(imagePath),
+//       )),
+//     );
+//   }
+
+//   Widget activeWidget(String imagePath, String label) {
+//     return Row(
+//       children: [
+//         Container(
+//           decoration: BoxDecoration(
+//               image: DecorationImage(
+//             image: AssetImage(imagePath),
+//           )),
+//         ),
+//         Text(label),
+//       ],
+//     );
+//   }
 
 /* -------------------------------------------------------------------------- */
 /*                                 //! States                                 */

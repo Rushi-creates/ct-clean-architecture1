@@ -96,8 +96,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             body: const Column(
               children: [
                 MyPostsChipsRowWidget(),
+                SizedBox(height: 10),
                 MyPostsTopPostsWidget(),
-                SizedBox(height: 8),
+                SizedBox(height: 10),
                 MyPostsWidget(),
               ],
             )),

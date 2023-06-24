@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<ChipsCubit<GCreatePostChips>>(
             create: (context) => ChipsCubit<GCreatePostChips>(0)),
         BlocProvider<ChipsCubit<GMyPostsChips>>(
-            create: (context) => ChipsCubit<GMyPostsChips>(0)),
+            create: (context) => ChipsCubit<GMyPostsChips>(2)),
 
         //@ BLOCS
         BlocProvider<RoleCheckerBloc>(create: (context) => RoleCheckerBloc()),

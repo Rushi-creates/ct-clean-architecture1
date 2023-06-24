@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../CONSTANTS/generic_classes.dart';
 
 class SearchProfileSearchBarWidget extends StatelessWidget {
-  final searchProfileController;
+  final TextEditingController searchProfileController;
   const SearchProfileSearchBarWidget(
       {super.key, required this.searchProfileController});
 
@@ -66,13 +66,15 @@ class SearchProfileSearchBarWidget extends StatelessWidget {
               child: IconButton(
                 icon: Icon(Icons.search),
                 onPressed: () {
-                  BlocProvider.of<FetchBloc<GSearchUsers>>(context)
-                      .add(List_Refresh_Event<GSearchUsers>());
-                  //# to call first set of pages
-                  BlocProvider.of<FetchBloc<GSearchUsers>>(context).add(
-                      List_Fetch_Event<GSearchUsers>((counter) =>
-                          ProfileRepo.instance.filterFetchByUsername(
-                              counter, searchProfileController.text)));
+                  if (searchProfileController.text.isNotEmpty) {
+                    BlocProvider.of<FetchBloc<GSearchUsers>>(context)
+                        .add(List_Refresh_Event<GSearchUsers>());
+                    //# to call first set of pages
+                    BlocProvider.of<FetchBloc<GSearchUsers>>(context).add(
+                        List_Fetch_Event<GSearchUsers>((counter) =>
+                            ProfileRepo.instance.filterFetchByUsername(
+                                counter, searchProfileController.text)));
+                  }
                 },
               ),
             ),

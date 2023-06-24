@@ -18,13 +18,32 @@ class SearchProfileListTileWidget extends StatelessWidget {
 
   listTile(context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 1, 8.0, 1),
-      child: ListTile(
-        tileColor: Color.fromARGB(255, 18, 0, 97),
-        leading: tile_leading(),
-        title: tile_title(),
-        subtitle: tile_subtitle(),
-        onTap: () async => await fetchListFunc(context, singleObj),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      child: GestureDetector(
+        onTap: () => fetchListFunc(context, singleObj),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color.fromARGB(255, 56, 165, 255),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: const EdgeInsets.all(25),
+          child: Row(
+            children: [
+              Icon(Icons.person, color: Colors.white),
+              SizedBox(width: 16),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  tile_title(),
+                  tile_subtitle(),
+                ],
+              ),
+              Spacer(),
+              Icon(Icons.arrow_forward_ios, color: Colors.white),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -39,7 +58,7 @@ class SearchProfileListTileWidget extends StatelessWidget {
   tile_title() {
     return Text(
       singleObj.username,
-      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       maxLines: 1,
     );
   }
@@ -51,11 +70,8 @@ class SearchProfileListTileWidget extends StatelessWidget {
         Text(
           singleObj.bio,
           maxLines: 1,
-          style: TextStyle(color: Colors.white),
+          style: const TextStyle(color: Colors.white),
         ),
-        SizedBox(
-          height: 40,
-        )
       ],
     );
   }

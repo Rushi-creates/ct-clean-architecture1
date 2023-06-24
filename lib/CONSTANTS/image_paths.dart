@@ -1,5 +1,11 @@
 class ImagePaths {
   //
+  static const String homeOnIcon = 'images/home_on_icon.png';
+  static const String homeOffIcon = 'images/home_off_icon.png';
+  static const String profileOnIcon = 'images/profile_on_icon.png';
+  static const String profileOffIcon = 'images/profile_off_icon.png';
+
+  //
   static const String peopleCards = 'images/people_cards.png';
   static const String googleLogo = 'images/google_logo.png';
   static const String searchIcon = 'images/search_icon.png';

@@ -20,16 +20,38 @@ class MyPostsChipsRowWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // //@
+            // ChipWidget<GMyPostsChips>(
+            //     index: 0,
+            //     activeWidget: singleButton(context,
+            //         index: 0,
+            //         label: 'All',
+            //         color1: const Color(0xFF777777),
+            //         color2: const Color(0xFF292929),
+            //         boxShadowColor:
+            //             Color.fromARGB(255, 129, 129, 129).withOpacity(0.4),
+            //         iconPath: ImagePaths.seriesChipIcon),
+
+            //     //
+            //     nonActiveWidget: singleButton(context,
+            //         index: 0,
+            //         label: 'All',
+            //         color1: Color.fromARGB(255, 255, 255, 255),
+            //         color2: Color.fromARGB(255, 250, 250, 250),
+            //         boxShadowColor: Colors.transparent,
+            //         iconPath: ImagePaths.seriesChipIconBlack)),
+
             //@
             ChipWidget<GMyPostsChips>(
                 index: 0,
                 activeWidget: singleButton(context,
                     index: 0,
                     label: 'All',
-                    color1: const Color(0xFF777777),
-                    color2: const Color(0xFF292929),
-                    boxShadowColor:
-                        Color.fromARGB(255, 129, 129, 129).withOpacity(0.4),
+                    // color1: Color.fromARGB(255, 141, 190, 254),
+                    // color2: Color.fromARGB(255, 96, 174, 246),
+                    color1: Color(0xff96D1FF),
+                    color2: Color.fromARGB(255, 51, 154, 233),
+                    boxShadowColor: Color(0xff96D1FF).withOpacity(0.4),
                     iconPath: ImagePaths.seriesChipIcon),
 
                 //

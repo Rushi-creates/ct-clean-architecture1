@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return FetchFollowingPosts_widget<GFollowingPosts>(
         listTile: (myObj, isEven, index) => HomePostTileWidget(
               post: FriendsPostsCache.o.posts[index],
+              isEven: isEven,
             ),
         myFetchFollowingPostsFunc: (counter) =>
             FollowingPostsRepo.instance.fetchHomePosts(counter));

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ct_single_post/CONSTANTS/image_paths.dart';
 import 'package:ct_single_post/MODULES/COMMON/WIDGETS/loader_widget.dart';
 import 'package:ct_single_post/MODULES/SEARCH_PROFILE/search_profile_screen.dart';
@@ -66,19 +67,25 @@ class _FetchFollowingPosts_widgetState<T>
 
   @override
   Widget build(BuildContext context) {
-    return SliverSnap(
-        expandedBackgroundColor: Colors.transparent,
-        collapsedBackgroundColor: Color.fromARGB(255, 255, 255, 255),
-        expandedContentHeight: MediaQuery.of(context).size.height * 0.27,
-        expandedContent: myAppBar(context),
-        collapsedContent: collapsedAppBar(),
-        body: myBody());
+    return RefreshIndicator(
+        onRefresh: () async {
+          print('Refreshed');
+          onRefreshFunc();
+        },
+        child: SliverSnap(
+            expandedBackgroundColor: Colors.transparent,
+            collapsedBackgroundColor: Color.fromARGB(255, 255, 255, 255),
+            expandedContentHeight: MediaQuery.of(context).size.height * 0.25,
+            expandedContent: myAppBar(context),
+            collapsedContent: collapsedAppBar(),
+            body: myBody())
 
-    // return Scaffold(
-    //   backgroundColor: Colors.white,
-    //   appBar: myHeader(),
-    //   body: myBody(),
-    // );
+        // return Scaffold(
+        //   backgroundColor: Colors.white,
+        //   appBar: myHeader(),
+        //   body: myBody(),
+        // );
+        );
   }
 
 /* -------------------------------------------------------------------------- */
@@ -101,24 +108,18 @@ class _FetchFollowingPosts_widgetState<T>
   // }
 
   myBody() {
-    return RefreshIndicator(
-      onRefresh: () async {
-        print('Refreshed');
-        onRefreshFunc();
-      },
-      child: SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-              // bodyTitle(),
-              // SizedBox(height: 15),
-              fetchFollowingPostsListStates(),
-              belowLastTile_STATES(),
-              const SizedBox(height: 60)
-            ],
-          )),
-    );
+    return SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          children: [
+            const SizedBox(height: 10),
+            // bodyTitle(),
+            // SizedBox(height: 15),
+            fetchFollowingPostsListStates(),
+            belowLastTile_STATES(),
+            const SizedBox(height: 60)
+          ],
+        ));
   }
 
   bodyTitle() {
@@ -142,9 +143,24 @@ class _FetchFollowingPosts_widgetState<T>
 
   collapsedAppBar() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20.0),
+      padding: const EdgeInsets.only(left: 10.0),
       child: Row(
         children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: CircleAvatar(
+                // radius: MediaQuery.of(context).size.width * 0.13,
+                backgroundColor: const Color.fromARGB(255, 216, 216, 216),
+                backgroundImage: CachedNetworkImageProvider(
+                    UserSpRepo.instance.getUser()!.photoUrl!)
+
+                //  UserSpRepo.instance.getUser()?.photoUrl == "empty"
+                //     ? NetworkImage(noPfp)
+                //     : NetworkImage(UserSpRepo.instance.getUser()!.photoUrl!),
+                // radius: 35.0,
+                ),
+          ),
+          const Spacer(),
           const Text(
             'Current Trends',
             style: TextStyle(
@@ -187,67 +203,69 @@ class _FetchFollowingPosts_widgetState<T>
               bottomRight: Radius.circular(20)),
           color: Colors.white),
       child: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                const Text(
-                  'Current Trends',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24,
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: SafeArea(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  const Text(
+                    'Current Trends',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                    ),
                   ),
-                ),
-                const Spacer(),
-                searchProfileIcon(context)
-              ],
-            ),
-            const SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        'Welcome back!\n${ProfileSpRepo.instance.getProfile()!.username!.toUpperCase()}, explore the feed.',
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
+                  const Spacer(),
+                  searchProfileIcon(context)
+                ],
+              ),
+              const SizedBox(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Welcome back!\n${ProfileSpRepo.instance.getProfile()!.username!.toUpperCase()}, explore the feed.',
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      bodyTitle()
-                    ],
+                        const SizedBox(height: 5),
+                        bodyTitle()
+                      ],
+                    ),
                   ),
-                ),
-                // SizedBox(width: 20,),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: CircleAvatar(
-                      radius: 55,
-                      backgroundColor: Colors.white,
+                  // SizedBox(width: 20,),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 50),
                       child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: NetworkImage(UserSpRepo.instance
-                                    .getUser()!
-                                    .photoUrl ==
-                                'empty'
-                            ? 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'
-                            : UserSpRepo.instance.getUser()!.photoUrl!),
+                        radius: 55,
+                        backgroundColor: Colors.white,
+                        child: CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(UserSpRepo.instance
+                                      .getUser()!
+                                      .photoUrl ==
+                                  'empty'
+                              ? 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'
+                              : UserSpRepo.instance.getUser()!.photoUrl!),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -289,7 +307,10 @@ class _FetchFollowingPosts_widgetState<T>
 
   buildFetchFollowingPostsList_ForYT(List listArg) {
     return listArg.isEmpty
-        ? const Text('empty')
+        ? const Text(
+            'No results',
+            style: TextStyle(color: Color.fromARGB(255, 241, 241, 241)),
+          )
         : ListView.builder(
             padding: EdgeInsets.zero,
             shrinkWrap: true,

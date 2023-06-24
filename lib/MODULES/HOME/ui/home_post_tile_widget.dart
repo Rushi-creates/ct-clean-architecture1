@@ -6,7 +6,9 @@ import '../../PROFILE/My_POSTS/ui/my_posts_widget/my_post_detail_screen.dart';
 
 class HomePostTileWidget extends StatelessWidget {
   final PostHolder post;
-  const HomePostTileWidget({super.key, required this.post});
+  final bool isEven;
+  const HomePostTileWidget(
+      {super.key, required this.post, required this.isEven});
 
   @override
   Widget build(BuildContext context) {
@@ -15,199 +17,180 @@ class HomePostTileWidget extends StatelessWidget {
 
   myBody(context, PostHolder post) {
     return GestureDetector(
-      onTap: () => fetchListFunc(context),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.54,
-        child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Container(
-              padding: const EdgeInsets.all(18.0),
-              decoration: BoxDecoration(
-                // border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
+        onTap: () => fetchListFunc(context),
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.black,
+            image: DecorationImage(
+              image: CachedNetworkImageProvider(
+                post.trendImage!,
               ),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    //!profile
-                    Container(
-                        // width: 140,
-                        decoration: BoxDecoration(
-                          // border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.circular(10),
-                          // color: Colors.white
-                        ),
-                        child: Row(children: [
-                          CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(post.userAcc_photoUrl),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                post.profile_username,
-                                style: TextStyle(
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                ),
-                              ),
-                              Text(
-                                post.profile_bio,
-                                style: TextStyle(
-                                  color: Colors.grey[500],
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ])),
+              fit: BoxFit.cover,
+              opacity: 0.25,
+            ),
+          ),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.29,
+            child: Flex(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
+              direction: Axis.horizontal,
+              children: [
+                card2(),
+                SizedBox(width: 10),
+                card1(context),
+                // isEven ? card2() : card1(context),
+                // SizedBox(width: 10),
+                // isEven ? card1(context) : card2(),
+              ],
+            ),
+          ),
+        ));
+  }
 
-                    const SizedBox(height: 15),
+/* -------------------------------------------------------------------------- */
+/*                                  //@ card1                                 */
+/* -------------------------------------------------------------------------- */
 
-                    //! image
-                    Padding(
-                      padding: const EdgeInsets.all(0),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.3,
-                          // width: double.infinity,
-                          decoration: const BoxDecoration(
-                              // color: Colors.red,
-                              gradient: LinearGradient(
-                                  colors: [
-                                Colors.black,
-                                Colors.black,
-                                Colors.transparent,
-                                // Colors.black,
-                                // Colors.transparent
-                                // Colors.black,
-                                // Colors.black54,
-                              ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter)),
-                          child: Stack(
-                            // alignment: Alignment.centerRight,
-                            children: [
-                              Opacity(
-                                opacity:
-                                    0.3, // Adjust the opacity value as needed
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(12),
-                                  child: CachedNetworkImage(
-                                    width: MediaQuery.of(context).size.width,
-                                    imageUrl: post.trendImage!,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                        child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(12),
-                                      child: CachedNetworkImage(
-                                        imageUrl: post.trendImage!,
-                                        fit: BoxFit.contain,
-                                      ),
-                                    )),
+  card1(context) {
+    return Flexible(
+        flex: 5,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: CachedNetworkImage(
+            width: MediaQuery.of(context).size.width,
+            imageUrl: post.trendImage!,
+            fit: BoxFit.cover,
+          ),
+        ));
+  }
+/* -------------------------------------------------------------------------- */
+/*                                  //@ card2                                 */
+/* -------------------------------------------------------------------------- */
 
-                                    //! image details
+  card2() {
+    return Flexible(
+        flex: 5,
+        child: Container(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              profileDetails(),
+              const Spacer(),
+              trendTitle(),
+              const SizedBox(height: 5),
+              trendDescription(),
+              const SizedBox(height: 5),
+              lovedFact(),
+            ],
+          ),
+        ));
+  }
+/* -------------------------------------------------------------------------- */
+/*                                 //! widgets                                */
+/* -------------------------------------------------------------------------- */
 
-                                    Expanded(
-                                        child: Padding(
-                                      padding: const EdgeInsets.only(left: 0),
-                                      child: Container(
-                                        decoration: const BoxDecoration(
-                                          borderRadius: BorderRadius.all(
-                                              Radius.circular(12)),
-                                          // color: Colors.white,
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(15.0),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            // mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Text(
-                                                post.trendTitle!,
-                                                style: const TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 25,
-                                                ),
-                                              ),
-                                              Text(
-                                                post.trendDescription!,
-                                                style: const TextStyle(
-                                                  // color: Colors.grey[600],
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18,
-                                                  color: Color.fromARGB(
-                                                      255, 224, 224, 224),
-                                                ),
-                                              ),
-                                              // SizedBox(height: 5),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ))
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    //! Watched on :
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        '${post.profile_username} watched this on ${post.watchedAt}',
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ),
-
-                    const SizedBox(height: 5),
-
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8.0),
-                      child: Text(
-                        post.lovedFact,
-                        overflow: TextOverflow.clip,
-                        maxLines: 2,
-                        style: TextStyle(
-                          color: Colors.grey[500],
-                          fontWeight: FontWeight.normal,
-                          fontSize: 12,
-                        ),
-                      ),
-                    )
-                  ]),
-            )),
+  trendDescription() {
+    return Text(
+      post.trendType == 'Songs'
+          ? '${post.profile_username} listened to this song by ${post.trendDescription!.toLowerCase()} on ${post.watchedAt}'
+          : post.trendType == 'Youtube'
+              ? '${post.profile_username} watched this youtube video by ${post.trendDescription!.toLowerCase()} on ${post.watchedAt}'
+              : '${post.profile_username} watched this ${post.trendDescription!.toLowerCase()} on ${post.watchedAt}',
+      style: const TextStyle(
+        // color: Colors.grey[600],
+        fontWeight: FontWeight.bold,
+        fontSize: 10,
+        color: Color.fromARGB(255, 240, 240, 240),
       ),
+    );
+  }
+
+  trendTitle() {
+    return Text(
+      post.trendTitle!,
+      maxLines: 4,
+      style: const TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+        fontSize: 20,
+      ),
+    );
+  }
+
+  lovedFact() {
+    return Text(
+      post.lovedFact,
+      // '"${post.lovedFact}"',
+      overflow: TextOverflow.clip,
+      maxLines: 2,
+      style: TextStyle(
+        color: const Color.fromARGB(255, 224, 224, 224),
+        fontWeight: FontWeight.normal,
+        fontSize: 10,
+      ),
+    );
+  }
+
+  watchedOn() {
+    return Text(
+      '${post.profile_username} watched this on ${post.watchedAt}',
+      style: const TextStyle(
+          color: Color.fromARGB(255, 243, 243, 243),
+          fontSize: 12,
+          fontWeight: FontWeight.bold),
+    );
+  }
+
+  profileDetails() {
+    return Column(
+      children: [
+        Container(
+            // width: 140,
+            decoration: BoxDecoration(
+              // border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.circular(10),
+              // color: Colors.white
+            ),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              CircleAvatar(
+                backgroundColor: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(post.userAcc_photoUrl),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    post.profile_username,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  Text(
+                    post.profile_bio,
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 250, 250, 250),
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ),
+            ])),
+      ],
     );
   }
 
