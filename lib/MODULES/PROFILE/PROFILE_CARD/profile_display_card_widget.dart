@@ -1,3 +1,4 @@
+import 'package:ct_single_post/MODULES/FOLLOWING/followers_screen.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/FOLLOW_BUTTONS/ui/follow_unfollow_button_widget.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_buttons_widgets.dart';
 import 'package:ct_single_post/MODULES/PROFILE/PROFILE_CARD/profile_followers_count_widget.dart';
@@ -7,6 +8,7 @@ import 'package:ct_single_post/MODULES/PROFILE/profile_screen_singleton.dart';
 import 'package:flutter/material.dart';
 
 import '../../../SERIALIZERS/repositories/drf_api/profile_repo.dart';
+import '../../FOLLOWING/FollowingScreen.dart';
 
 class ProfileDisplayCardWidget extends StatelessWidget {
   const ProfileDisplayCardWidget({super.key});
@@ -73,13 +75,33 @@ class ProfileDisplayCardWidget extends StatelessWidget {
                             ),
                             color: Colors.white,
                           ),
-                          child: const Row(
+                          child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                ProfileFollowersCountWidget(
-                                    count: '867', label: 'Followers'),
-                                ProfileFollowersCountWidget(
-                                    count: '249', label: 'Following')
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return FollowersScreen();
+                                    }));
+                                  },
+                                  child: ProfileFollowersCountWidget(
+                                      count:
+                                          '${ProfileSpRepo.instance.getProfile()!.followersCount}',
+                                      label: 'Followers'),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return FollowingScreen();
+                                    }));
+                                  },
+                                  child: ProfileFollowersCountWidget(
+                                      count:
+                                          '${ProfileSpRepo.instance.getProfile()!.followingCount}',
+                                      label: 'Following'),
+                                )
                                 // username_bio(),
                                 // editProfile_button(),
                               ]),

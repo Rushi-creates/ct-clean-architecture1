@@ -118,6 +118,10 @@ class _MyAppState extends State<MyApp> {
 
         BlocProvider<FetchBloc<GFollowing>>(
             create: (context) => FetchBloc<GFollowing>()),
+
+        BlocProvider<FetchBloc<GFollowers>>(
+            create: (context) => FetchBloc<GFollowers>()),
+
         BlocProvider<FetchFollowingPostsBloc<GFollowingPosts>>(
             create: (context) => FetchFollowingPostsBloc<GFollowingPosts>()),
         BlocProvider<FetchBloc<GSearchUsers>>(

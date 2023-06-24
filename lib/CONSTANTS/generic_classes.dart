@@ -8,6 +8,8 @@ class GMyPosts {}
 
 class GFollowing {}
 
+class GFollowers {}
+
 class GFollowingPosts {}
 
 class GSearchUsers {}

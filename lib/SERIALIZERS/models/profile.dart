@@ -5,21 +5,29 @@ class Profile {
   int? p_uid;
   String? username;
   String? bio;
+  int? followingCount;
+  int? followersCount;
   Profile({
     this.p_uid,
     this.username,
     this.bio,
+    this.followingCount,
+    this.followersCount,
   });
 
   Profile copyWith({
     int? p_uid,
     String? username,
     String? bio,
+    int? followingCount,
+    int? followersCount,
   }) {
     return Profile(
       p_uid: p_uid ?? this.p_uid,
       username: username ?? this.username,
       bio: bio ?? this.bio,
+      followingCount: followingCount ?? this.followingCount,
+      followersCount: followersCount ?? this.followersCount,
     );
   }
 
@@ -28,6 +36,8 @@ class Profile {
       'p_uid': p_uid,
       'username': username,
       'bio': bio,
+      'followingCount': followingCount,
+      'followersCount': followersCount,
     };
   }
 
@@ -36,13 +46,11 @@ class Profile {
       p_uid: map['p_uid'] != null ? map['p_uid'] as int : null,
       username: map['username'] != null ? map['username'] as String : null,
       bio: map['bio'] != null ? map['bio'] as String : null,
+      followingCount:
+          map['followingCount'] != null ? map['followingCount'] as int : null,
+      followersCount:
+          map['followersCount'] != null ? map['followersCount'] as int : null,
     );
-  }
-
-  static fromMapList(rawData) {
-    List parsedJsonList = rawData;
-    List dartObjList = parsedJsonList.map((i) => Profile.fromMap(i)).toList();
-    return dartObjList;
   }
 
   String toJson() => json.encode(toMap());
@@ -51,7 +59,15 @@ class Profile {
       Profile.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
-  String toString() => 'Profile(p_uid: $p_uid, username: $username, bio: $bio)';
+  String toString() {
+    return 'Profile(p_uid: $p_uid, username: $username, bio: $bio, followingCount: $followingCount, followersCount: $followersCount)';
+  }
+
+  static fromMapList(rawData) {
+    List parsedJsonList = rawData;
+    List dartObjList = parsedJsonList.map((i) => Profile.fromMap(i)).toList();
+    return dartObjList;
+  }
 
   @override
   bool operator ==(covariant Profile other) {
@@ -59,9 +75,17 @@ class Profile {
 
     return other.p_uid == p_uid &&
         other.username == username &&
-        other.bio == bio;
+        other.bio == bio &&
+        other.followingCount == followingCount &&
+        other.followersCount == followersCount;
   }
 
   @override
-  int get hashCode => p_uid.hashCode ^ username.hashCode ^ bio.hashCode;
+  int get hashCode {
+    return p_uid.hashCode ^
+        username.hashCode ^
+        bio.hashCode ^
+        followingCount.hashCode ^
+        followersCount.hashCode;
+  }
 }

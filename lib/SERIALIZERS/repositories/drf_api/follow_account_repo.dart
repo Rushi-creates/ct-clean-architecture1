@@ -42,6 +42,15 @@ class FollowAccountRepo {
     return FollowAccount.fromMapList(rawData);
   }
 
+  fetchProp_myFollowers(int counter, my_profile_fk) async {
+    var rawData = await DjangoHelper.instance.filterFetch(
+        url: DjangoEndpoints.follow_getAll,
+        pageNum: counter,
+        customSearch: '&other_profile_fk=${my_profile_fk}');
+
+    return FollowAccount.fromMapList(rawData);
+  }
+
 /* -------------------------------------------------------------------------- */
 /*                               //! Fetch by id                              */
 /* -------------------------------------------------------------------------- */
