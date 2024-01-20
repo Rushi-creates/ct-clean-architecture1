@@ -99,20 +99,21 @@ class UserSpRepo {
   static final instance = UserSpRepo._();
 
   setUser(value) async {
-    return await CacheHelper.set('user', value);
+    return await SharedPreferencesHelper.set('user', value);
   }
 
   User? getUser() {
     // await not required in getModel
-    var jsonMap = CacheHelper.getModel('user');
+    var jsonMap = SharedPreferencesHelper.getModel('user');
 
-    if (jsonMap == null)
+    if (jsonMap == null) {
       return null;
-    else
+    } else {
       return User.fromJson(jsonMap);
+    }
   }
 
   removeUser() async {
-    return await CacheHelper.remove('user');
+    return await SharedPreferencesHelper.remove('user');
   }
 }

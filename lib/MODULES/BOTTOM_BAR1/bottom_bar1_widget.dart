@@ -126,7 +126,7 @@ class _Bottombar1WidgetState extends State<Bottombar1Widget> {
               return LinearGradient(
                 colors: [
                   color!,
-                  Color.fromARGB(255, 196, 229, 255),
+                  const Color.fromARGB(255, 196, 229, 255),
                 ],
                 end: Alignment.topRight,
                 begin: Alignment.bottomLeft,

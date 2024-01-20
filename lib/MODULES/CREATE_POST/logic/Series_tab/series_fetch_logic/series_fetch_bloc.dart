@@ -13,7 +13,7 @@ class SeriesFetchBloc extends Bloc<SeriesFetchEvent, SeriesFetchState> {
 /*                             //@ repo class obj                             */
 /* -------------------------------------------------------------------------- */
 
-    Series_api_repo series_api_repo = Series_api_repo();
+    Series_api_repo seriesApiRepo = Series_api_repo();
 
     on<Series_SearchFetch_Event>((event, emit) async {
       print('series fetch called');
@@ -22,7 +22,7 @@ class SeriesFetchBloc extends Bloc<SeriesFetchEvent, SeriesFetchState> {
         // await Future.delayed(Duration(milliseconds: 800));
 
         final moreFetchedList =
-            await series_api_repo.fetchProp(event.customSearch);
+            await seriesApiRepo.fetchProp(event.customSearch);
 
         print(moreFetchedList);
         // final List moreFetchedList =

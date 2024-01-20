@@ -237,7 +237,7 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
           )
         : MasonryGridView.count(
             // padding: EdgeInsets.zero,
-            padding: EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             physics: const NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -351,15 +351,15 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
 
   tryAgainButton(context) {
     return TextButton(
-      child: const Text(
-        "Try again",
-        style: TextStyle(color: Colors.white),
-      ),
       style: TextButton.styleFrom(backgroundColor: Colors.pink[600]),
       onPressed: () {
         BlocProvider.of<FetchPostsBloc<T>>(context)
             .add(List_FetchPosts_Event<T>(widget.myFetchPostsFunc));
       },
+      child: const Text(
+        "Try again",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
@@ -379,15 +379,15 @@ class _FetchPosts_widgetState<T> extends State<FetchPosts_widget<T>> {
 
   loadMoreButton(context) {
     return TextButton(
-      child: const Text(
-        "Load more ",
-        style: TextStyle(color: Colors.white),
-      ),
       style: TextButton.styleFrom(backgroundColor: Colors.pink[600]),
       onPressed: () {
         BlocProvider.of<FetchPostsBloc<T>>(context)
             .add(List_FetchPosts_Event<T>(widget.myFetchPostsFunc));
       },
+      child: const Text(
+        "Load more ",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 

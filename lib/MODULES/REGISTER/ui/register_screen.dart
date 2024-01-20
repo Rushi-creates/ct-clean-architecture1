@@ -48,7 +48,7 @@ class RegisterScreen extends StatelessWidget {
                   welcomeDescriptionText(),
                   const SizedBox(height: 75),
                   const RegisterButtonWidget(),
-                  TermsAndConditionsWidget()
+                  const TermsAndConditionsWidget()
                 ],
               ),
             ))

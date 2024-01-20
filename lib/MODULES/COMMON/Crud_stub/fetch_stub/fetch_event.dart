@@ -8,7 +8,7 @@ abstract class FetchEvent<T> extends Equatable {
 
 class List_Fetch_Event<T> extends FetchEvent<T> {
   final Future<dynamic> Function(int counter) myFetchFunc;
-  List_Fetch_Event(this.myFetchFunc);
+  const List_Fetch_Event(this.myFetchFunc);
   @override
   List<Object> get props => [myFetchFunc];
 }

@@ -13,7 +13,7 @@ class SongsFetchBloc extends Bloc<SongsFetchEvent, SongsFetchState> {
 /*                             //@ repo class obj                             */
 /* -------------------------------------------------------------------------- */
 
-    Songs_api_repo songs_api_repo = Songs_api_repo();
+    Songs_api_repo songsApiRepo = Songs_api_repo();
 
     on<Songs_SearchFetch_Event>((event, emit) async {
       print('songs fetch called');
@@ -22,7 +22,7 @@ class SongsFetchBloc extends Bloc<SongsFetchEvent, SongsFetchState> {
         // await Future.delayed(Duration(milliseconds: 800));
 
         final moreFetchedList =
-            await songs_api_repo.fetchProp(event.customSearch);
+            await songsApiRepo.fetchProp(event.customSearch);
 
         print(moreFetchedList);
         // final List moreFetchedList =

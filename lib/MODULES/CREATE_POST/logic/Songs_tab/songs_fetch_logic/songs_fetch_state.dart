@@ -11,7 +11,7 @@ class SongsFetchInitial extends SongsFetchState {}
 
 class SongsFetch_Success_State extends SongsFetchState {
   final modelObjList;
-  SongsFetch_Success_State(this.modelObjList);
+  const SongsFetch_Success_State(this.modelObjList);
 
   @override
   List<Object> get props => [modelObjList];
@@ -20,7 +20,7 @@ class SongsFetch_Success_State extends SongsFetchState {
 class SongsFetch_Error_State extends SongsFetchState {
   final error;
 
-  SongsFetch_Error_State(this.error);
+  const SongsFetch_Error_State(this.error);
   @override
   List<Object> get props => [error];
 }

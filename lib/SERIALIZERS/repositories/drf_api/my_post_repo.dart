@@ -33,11 +33,11 @@ class MyPostRepo {
   //   return MyPost.fromMapList(rawData);
   // }
 
-  fetchProp(int counter, String profile_fk, [String? trendType]) async {
+  fetchProp(int counter, String profileFk, [String? trendType]) async {
     var rawData = await DjangoHelper.instance.filterFetch(
         url: DjangoEndpoints.myPost_getAll,
         pageNum: counter,
-        customSearch: '&profile_fk=$profile_fk');
+        customSearch: '&profile_fk=$profileFk');
 
     return MyPost.fromMapList(rawData);
   }
@@ -101,12 +101,12 @@ class MyPostRepo {
   // static final instance = MyPostSpRepo._();
 
 //   setMyPost(value) async {
-//    return await CacheHelper.set('myPost', value);
+//    return await SharedPreferencesHelper.set('myPost', value);
 //   }
 
 //    MyPost? getMyPost() {
 //   // await not required in getModel
-//     var jsonMap = CacheHelper.getModel('myPost');
+//     var jsonMap = SharedPreferencesHelper.getModel('myPost');
 
 //     if (jsonMap == null)
 //       return null;
@@ -115,6 +115,6 @@ class MyPostRepo {
 //   }
 
 //   removeMyPost() async {
-//    return await CacheHelper.remove('myPost');
+//    return await SharedPreferencesHelper.remove('myPost');
 //   }
 // }

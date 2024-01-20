@@ -10,7 +10,7 @@ part 'trending_songs_fetch_state.dart';
 class TrendingSongsFetchBloc
     extends Bloc<TrendingSongsFetchEvent, TrendingSongsFetchState> {
   TrendingSongsFetchBloc() : super(TrendingSongsFetchInitial()) {
-    Songs_api_repo songs_api_repo = Songs_api_repo();
+    Songs_api_repo songsApiRepo = Songs_api_repo();
 
     on<FetchTrendingSongs_Event>((event, emit) async {
       print('trending songs fetch called');
@@ -18,7 +18,7 @@ class TrendingSongsFetchBloc
         emit((TrendingSongsFetch_Loading_State()));
         // await Future.delayed(Duration(milliseconds: 800));
 
-        final moreFetchedList = await songs_api_repo.fetchProp_trendingSongs();
+        final moreFetchedList = await songsApiRepo.fetchProp_trendingSongs();
 
         print(moreFetchedList);
         // final List moreFetchedList =

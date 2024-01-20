@@ -33,20 +33,20 @@ class FollowAccountRepo {
   //   return FollowAccount.fromMapList(rawData);
   // }
 
-  fetchProp_myFollowing(int counter, my_profile_fk) async {
+  fetchProp_myFollowing(int counter, myProfileFk) async {
     var rawData = await DjangoHelper.instance.filterFetch(
         url: DjangoEndpoints.follow_getAll,
         pageNum: counter,
-        customSearch: '&my_profile_fk=${my_profile_fk}');
+        customSearch: '&my_profile_fk=$myProfileFk');
 
     return FollowAccount.fromMapList(rawData);
   }
 
-  fetchProp_myFollowers(int counter, my_profile_fk) async {
+  fetchProp_myFollowers(int counter, myProfileFk) async {
     var rawData = await DjangoHelper.instance.filterFetch(
         url: DjangoEndpoints.follow_getAll,
         pageNum: counter,
-        customSearch: '&other_profile_fk=${my_profile_fk}');
+        customSearch: '&other_profile_fk=$myProfileFk');
 
     return FollowAccount.fromMapList(rawData);
   }
@@ -124,12 +124,12 @@ class FollowAccountRepo {
   // static final instance = FollowAccountSpRepo._();
 
 //   setFollowAccount(value) async {
-//    return await CacheHelper.set('followAccount', value);
+//    return await SharedPreferencesHelper.set('followAccount', value);
 //   }
 
 //    FollowAccount? getFollowAccount() {
 //   // await not required in getModel
-//     var jsonMap = CacheHelper.getModel('followAccount');
+//     var jsonMap = SharedPreferencesHelper.getModel('followAccount');
 
 //     if (jsonMap == null)
 //       return null;
@@ -138,6 +138,6 @@ class FollowAccountRepo {
 //   }
 
 //   removeFollowAccount() async {
-//    return await CacheHelper.remove('followAccount');
+//    return await SharedPreferencesHelper.remove('followAccount');
 //   }
 // }

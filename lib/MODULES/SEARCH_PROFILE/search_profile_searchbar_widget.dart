@@ -24,7 +24,9 @@ class SearchProfileSearchBarWidget extends StatelessWidget {
           width: double.infinity,
           height: 45,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(5)),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+          ),
           child: Center(child: searchTextField(context)),
         ),
       ),
@@ -42,8 +44,8 @@ class SearchProfileSearchBarWidget extends StatelessWidget {
       // },
       controller: searchProfileController,
       decoration: InputDecoration(
-          hintStyle:
-              TextStyle(color: Colors.grey, fontWeight: FontWeight.normal),
+          hintStyle: const TextStyle(
+              color: Colors.grey, fontWeight: FontWeight.normal),
           prefixIcon: Icon(
             Icons.person,
             color: Colors.blue[900],
@@ -64,7 +66,7 @@ class SearchProfileSearchBarWidget extends StatelessWidget {
           child: FittedBox(
             child: Center(
               child: IconButton(
-                icon: Icon(Icons.search),
+                icon: const Icon(Icons.search),
                 onPressed: () {
                   if (searchProfileController.text.isNotEmpty) {
                     BlocProvider.of<FetchBloc<GSearchUsers>>(context)

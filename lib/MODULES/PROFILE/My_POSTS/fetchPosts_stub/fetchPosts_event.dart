@@ -8,7 +8,7 @@ abstract class FetchPostsEvent<T> extends Equatable {
 
 class List_FetchPosts_Event<T> extends FetchPostsEvent<T> {
   final Future<dynamic> Function(int counter) myFetchPostsFunc;
-  List_FetchPosts_Event(this.myFetchPostsFunc);
+  const List_FetchPosts_Event(this.myFetchPostsFunc);
   @override
   List<Object> get props => [myFetchPostsFunc];
 }

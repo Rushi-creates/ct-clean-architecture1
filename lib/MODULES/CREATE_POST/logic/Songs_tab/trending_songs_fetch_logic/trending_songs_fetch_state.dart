@@ -12,7 +12,7 @@ class TrendingSongsFetchInitial extends TrendingSongsFetchState {}
 class TrendingSongsFetch_Success_State extends TrendingSongsFetchState {
   final trendSongsList;
 
-  TrendingSongsFetch_Success_State(this.trendSongsList);
+  const TrendingSongsFetch_Success_State(this.trendSongsList);
 
   @override
   List<Object> get props => [trendSongsList];
@@ -21,7 +21,7 @@ class TrendingSongsFetch_Success_State extends TrendingSongsFetchState {
 class TrendingSongsFetch_Error_State extends TrendingSongsFetchState {
   final error;
 
-  TrendingSongsFetch_Error_State(this.error);
+  const TrendingSongsFetch_Error_State(this.error);
 
   @override
   List<Object> get props => [error];

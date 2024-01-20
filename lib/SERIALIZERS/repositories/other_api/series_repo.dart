@@ -98,21 +98,21 @@ class Series_api_repo {
 /* -------------------------------------------------------------------------- */
 
 // //Todo : while using sp , make sure to use await , kw , or it wont work
-// // CacheHelper.get('UserAcc');
-// // await CacheHelper.set('UserAcc');
-// // await CacheHelper.remove('UserAcc');
+// // SharedPreferencesHelper.get('UserAcc');
+// // await SharedPreferencesHelper.set('UserAcc');
+// // await SharedPreferencesHelper.remove('UserAcc');
 
 // class Series_sp_repo {
 //   set_series(value) async {
-//     return await CacheHelper.set('series', value);
+//     return await SharedPreferencesHelper.set('series', value);
 //   }
 
 //   //! do not use await in get
 //   get_series() {
-//     return CacheHelper.get('series');
+//     return SharedPreferencesHelper.get('series');
 //   }
 
 //   remove_series() async {
-//     return await CacheHelper.remove('series');
+//     return await SharedPreferencesHelper.remove('series');
 //   }
 // }

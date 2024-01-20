@@ -42,10 +42,10 @@ class Movie {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'page': this.page,
-      'results': this.results,
-      'totalPages': this.totalPages,
-      'totalResults': this.totalResults,
+      'page': page,
+      'results': results,
+      'totalPages': totalPages,
+      'totalResults': totalResults,
     };
   }
 }

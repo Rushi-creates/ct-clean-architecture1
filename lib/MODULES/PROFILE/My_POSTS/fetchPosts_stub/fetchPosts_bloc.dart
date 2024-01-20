@@ -21,11 +21,11 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
 /*                                     //!                                    */
 /* -------------------------------------------------------------------------- */
 
-  FetchPostsBloc() : super(FetchPostsInitial<T>(fetchPostsList: [])) {
-    Songs_api_repo songs_api_repo = Songs_api_repo();
-    Yt_api_repo yt_api_repo = Yt_api_repo();
-    Movies_api_repo movies_api_repo = Movies_api_repo();
-    Series_api_repo series_api_repo = Series_api_repo();
+  FetchPostsBloc() : super(FetchPostsInitial<T>(fetchPostsList: const [])) {
+    Songs_api_repo songsApiRepo = Songs_api_repo();
+    Yt_api_repo ytApiRepo = Yt_api_repo();
+    Movies_api_repo moviesApiRepo = Movies_api_repo();
+    Series_api_repo seriesApiRepo = Series_api_repo();
 
     //@ dummy MyPost ( for each trend)
 
@@ -68,7 +68,7 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
 
             //! songs
             if (moreListFetchPostsed[i].trendType == 'Songs') {
-              singleTrend = await songs_api_repo
+              singleTrend = await songsApiRepo
                   .fetchSong_byId(moreListFetchPostsed[i].api_id);
               print(singleTrend);
 
@@ -84,7 +84,7 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
 
             //! Youtube
             else if (moreListFetchPostsed[i].trendType == 'Youtube') {
-              singleTrend = await yt_api_repo
+              singleTrend = await ytApiRepo
                   .fetchYoutube_byId(moreListFetchPostsed[i].api_id);
 
               MyPost myPost = moreListFetchPostsed[i]
@@ -94,7 +94,7 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
 
             //! Movies
             else if (moreListFetchPostsed[i].trendType == 'Movies') {
-              singleTrend = await movies_api_repo
+              singleTrend = await moviesApiRepo
                   .fetchMovies_byId(moreListFetchPostsed[i].api_id);
 
               MyPost myPost =
@@ -103,7 +103,7 @@ class FetchPostsBloc<T> extends Bloc<FetchPostsEvent<T>, FetchPostsState<T>> {
             }
             //! Series
             else if (moreListFetchPostsed[i].trendType == 'Series') {
-              singleTrend = await series_api_repo
+              singleTrend = await seriesApiRepo
                   .fetchSeries_byId(moreListFetchPostsed[i].api_id);
 
               MyPost myPost =

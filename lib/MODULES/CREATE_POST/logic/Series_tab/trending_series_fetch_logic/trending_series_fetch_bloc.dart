@@ -10,7 +10,7 @@ part 'trending_series_fetch_state.dart';
 class TrendingSeriesFetchBloc
     extends Bloc<TrendingSeriesFetchEvent, TrendingSeriesFetchState> {
   TrendingSeriesFetchBloc() : super(TrendingSeriesFetchInitial()) {
-    Series_api_repo series_api_repo = Series_api_repo();
+    Series_api_repo seriesApiRepo = Series_api_repo();
 
     on<FetchTrendingSeries_Event>((event, emit) async {
       print('trending series fetch called');
@@ -19,7 +19,7 @@ class TrendingSeriesFetchBloc
         // await Future.delayed(Duration(milliseconds: 800));
 
         final moreFetchedList =
-            await series_api_repo.fetchProp_trendingSeries();
+            await seriesApiRepo.fetchProp_trendingSeries();
 
         print(moreFetchedList);
         // final List moreFetchedList =

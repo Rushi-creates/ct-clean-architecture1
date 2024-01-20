@@ -37,7 +37,7 @@ import 'MODULES/CREATE_POST/ui/FORM/create_post_form_states_widget/trend_selecti
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await CacheHelper.init();
+  await SharedPreferencesHelper.init();
 
   // UserSpRepo.instance.removeUser();
   // ProfileSpRepo.instance.removeProfile();

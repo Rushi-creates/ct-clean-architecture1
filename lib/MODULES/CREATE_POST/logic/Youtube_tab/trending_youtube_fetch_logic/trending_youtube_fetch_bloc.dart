@@ -10,7 +10,7 @@ part 'trending_youtube_fetch_state.dart';
 class TrendingYoutubeFetchBloc
     extends Bloc<TrendingYoutubeFetchEvent, TrendingYoutubeFetchState> {
   TrendingYoutubeFetchBloc() : super(TrendingYoutubeFetchInitial()) {
-    Yt_api_repo youtube_api_repo = Yt_api_repo();
+    Yt_api_repo youtubeApiRepo = Yt_api_repo();
 
     on<FetchTrendingYoutube_Event>((event, emit) async {
       print('trending youtube fetch called');
@@ -19,7 +19,7 @@ class TrendingYoutubeFetchBloc
         // await Future.delayed(Duration(milliseconds: 800));
 
         final moreFetchedList =
-            await youtube_api_repo.fetchProp_trendingYoutube();
+            await youtubeApiRepo.fetchProp_trendingYoutube();
 
         print('reached trend yt bloc');
 

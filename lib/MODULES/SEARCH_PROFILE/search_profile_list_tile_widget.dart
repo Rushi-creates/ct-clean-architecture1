@@ -23,14 +23,14 @@ class SearchProfileListTileWidget extends StatelessWidget {
         onTap: () => fetchListFunc(context, singleObj),
         child: Container(
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 56, 165, 255),
+            color: const Color.fromARGB(255, 56, 165, 255),
             borderRadius: BorderRadius.circular(10),
           ),
           padding: const EdgeInsets.all(25),
           child: Row(
             children: [
-              Icon(Icons.person, color: Colors.white),
-              SizedBox(width: 16),
+              const Icon(Icons.person, color: Colors.white),
+              const SizedBox(width: 16),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,8 +39,8 @@ class SearchProfileListTileWidget extends StatelessWidget {
                   tile_subtitle(),
                 ],
               ),
-              Spacer(),
-              Icon(Icons.arrow_forward_ios, color: Colors.white),
+              const Spacer(),
+              const Icon(Icons.arrow_forward_ios, color: Colors.white),
             ],
           ),
         ),

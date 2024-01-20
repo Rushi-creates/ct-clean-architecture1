@@ -26,7 +26,7 @@ class RegisterButtonBloc
         print(result);
 
         //@ DRF store
-        User users = await User(
+        User users = User(
             gauth_id: result.id,
             name: result.displayName ?? 'empty',
             email: result.email,

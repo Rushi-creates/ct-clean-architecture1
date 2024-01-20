@@ -11,7 +11,7 @@ class YoutubeFetchInitial extends YoutubeFetchState {}
 
 class YoutubeFetch_Success_State extends YoutubeFetchState {
   final modelObjList;
-  YoutubeFetch_Success_State(this.modelObjList);
+  const YoutubeFetch_Success_State(this.modelObjList);
 
   @override
   List<Object> get props => [modelObjList];
@@ -20,7 +20,7 @@ class YoutubeFetch_Success_State extends YoutubeFetchState {
 class YoutubeFetch_Error_State extends YoutubeFetchState {
   final error;
 
-  YoutubeFetch_Error_State(this.error);
+  const YoutubeFetch_Error_State(this.error);
   @override
   List<Object> get props => [error];
 }

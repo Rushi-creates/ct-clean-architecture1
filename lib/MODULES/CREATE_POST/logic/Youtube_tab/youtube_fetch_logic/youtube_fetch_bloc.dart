@@ -13,7 +13,7 @@ class YoutubeFetchBloc extends Bloc<YoutubeFetchEvent, YoutubeFetchState> {
 /*                             //@ repo class obj                             */
 /* -------------------------------------------------------------------------- */
 
-    Yt_api_repo youtube_api_repo = Yt_api_repo();
+    Yt_api_repo youtubeApiRepo = Yt_api_repo();
 
     on<Youtube_SearchFetch_Event>((event, emit) async {
       print('youtube fetch called');
@@ -22,7 +22,7 @@ class YoutubeFetchBloc extends Bloc<YoutubeFetchEvent, YoutubeFetchState> {
         // await Future.delayed(Duration(milliseconds: 800));
 
         final moreFetchedList =
-            await youtube_api_repo.fetchProp(event.customSearch);
+            await youtubeApiRepo.fetchProp(event.customSearch);
 
         print(moreFetchedList);
         // final List moreFetchedList =

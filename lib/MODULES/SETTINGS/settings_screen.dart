@@ -319,7 +319,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       fontWeight: FontWeight.bold, fontSize: 18),
                 ),
                 Text(
-                  '${UserSpRepo.instance.getUser()!.email}',
+                  UserSpRepo.instance.getUser()!.email,
                   style: const TextStyle(color: Colors.grey, fontSize: 12),
                 ),
                 // Text('Your photoUrl : ${User_sp_repo.get_user()!.photoUrl}'),

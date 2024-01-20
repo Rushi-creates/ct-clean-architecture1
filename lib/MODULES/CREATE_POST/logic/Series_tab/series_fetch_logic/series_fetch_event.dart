@@ -10,7 +10,7 @@ abstract class SeriesFetchEvent extends Equatable {
 class Series_SearchFetch_Event extends SeriesFetchEvent {
   final customSearch;
 
-  Series_SearchFetch_Event(this.customSearch);
+  const Series_SearchFetch_Event(this.customSearch);
 
   @override
   List<Object> get props => [customSearch];

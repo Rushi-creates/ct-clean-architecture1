@@ -99,12 +99,12 @@ class GoogleAuthRepo {
   // static final instance = GoogleAuthSpRepo._();
 
 //   set_googleAuth(value) async {
-//    return await CacheHelper.set('googleAuth', value);
+//    return await SharedPreferencesHelper.set('googleAuth', value);
 //   }
 
 //    GoogleAuth? get_googleAuth() {
 //   // await not required in getModel
-//     var jsonMap = CacheHelper.getModel('googleAuth');
+//     var jsonMap = SharedPreferencesHelper.getModel('googleAuth');
 
 //     if (jsonMap == null)
 //       return null;
@@ -113,6 +113,6 @@ class GoogleAuthRepo {
 //   }
 
 //   remove_googleAuth() async {
-//    return await CacheHelper.remove('googleAuth');
+//    return await SharedPreferencesHelper.remove('googleAuth');
 //   }
 // }

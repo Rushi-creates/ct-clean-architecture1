@@ -215,7 +215,7 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
       title: const Text("Title"),
       subtitle: const Text("SubTitle"),
       onTap: () {
-        return null;
+        return;
       },
     );
   }
@@ -281,15 +281,15 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
 
   tryAgainButton(context) {
     return TextButton(
-      child: const Text(
-        "Try again",
-        style: TextStyle(color: Colors.white),
-      ),
       style: TextButton.styleFrom(backgroundColor: Colors.pink[600]),
       onPressed: () {
         BlocProvider.of<FetchBloc<T>>(context)
             .add(List_Fetch_Event<T>(widget.myFetchFunc));
       },
+      child: const Text(
+        "Try again",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
@@ -309,15 +309,15 @@ class _Fetch_widgetState<T> extends State<Fetch_widget<T>> {
 
   loadMoreButton(context) {
     return TextButton(
-      child: const Text(
-        "Load more ",
-        style: TextStyle(color: Colors.white),
-      ),
       style: TextButton.styleFrom(backgroundColor: Colors.pink[600]),
       onPressed: () {
         BlocProvider.of<FetchBloc<T>>(context)
             .add(List_Fetch_Event<T>(widget.myFetchFunc));
       },
+      child: const Text(
+        "Load more ",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 

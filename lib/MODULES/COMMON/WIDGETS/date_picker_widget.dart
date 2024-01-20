@@ -57,7 +57,7 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               //     offset: Offset(0, 1),
               //   ),
               // ],
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [
                   Color.fromARGB(255, 255, 255, 255),
                   Color.fromARGB(255, 238, 238, 238),
@@ -73,15 +73,15 @@ class _DatePickerWidgetState extends State<DatePickerWidget> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.calendar_today,
                     size: 12,
                     color: Colors.grey,
                   ),
-                  Text('  '),
+                  const Text('  '),
                   Text(
                     "${_selectedDate.toLocal()}".split(' ')[0],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 10,
                       color: Colors.grey,
                     ),

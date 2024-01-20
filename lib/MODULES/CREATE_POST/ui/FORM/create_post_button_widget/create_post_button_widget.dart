@@ -14,7 +14,7 @@ class CreatePostButtonWidget<T> extends StatelessWidget {
   final apiId;
   // final String lovedFactText;
   final pickedDate;
-  const CreatePostButtonWidget({
+  const CreatePostButtonWidget({super.key, 
     required this.pickedDate,
     required this.headingText,
     required this.apiId,

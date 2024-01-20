@@ -13,11 +13,7 @@ class ITunesEndpoints {
   static const String searchSongs =
       _domainUrl + _music_Media_query + _country_IN_query + _term_query;
 
-  static const String dummyTrendSongsUrl = _domainUrl +
-      _music_Media_query +
-      _country_IN_query +
-      _term_query +
-      "trending";
+  static const String dummyTrendSongsUrl = "$_domainUrl$_music_Media_query$_country_IN_query${_term_query}trending";
 
   static const String getSongById_halfUrl = _getSongById;
 }

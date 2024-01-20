@@ -13,7 +13,7 @@ class FetchBloc<T> extends Bloc<FetchEvent<T>, FetchState<T>> {
 /*                                     //!                                    */
 /* -------------------------------------------------------------------------- */
 
-  FetchBloc() : super(FetchInitial<T>(fetchList: [])) {
+  FetchBloc() : super(FetchInitial<T>(fetchList: const [])) {
 /* -------------------------------------------------------------------------- */
 /*                        //@ Fetch + pagination                              */
 /* -------------------------------------------------------------------------- */

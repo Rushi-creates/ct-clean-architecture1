@@ -32,9 +32,9 @@ class MovieResults {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'id': this.id,
-      'title': this.title,
-      'poster_path': this.poster_path,
+      'id': id,
+      'title': title,
+      'poster_path': poster_path,
     };
   }
 }

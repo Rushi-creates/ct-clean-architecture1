@@ -74,7 +74,7 @@ class _FetchFollowingPosts_widgetState<T>
         },
         child: SliverSnap(
             expandedBackgroundColor: Colors.transparent,
-            collapsedBackgroundColor: Color.fromARGB(255, 255, 255, 255),
+            collapsedBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
             expandedContentHeight: MediaQuery.of(context).size.height * 0.25,
             expandedContent: myAppBar(context),
             collapsedContent: collapsedAppBar(),
@@ -284,7 +284,7 @@ class _FetchFollowingPosts_widgetState<T>
             Icons.search,
             // weight: 30,
             size: 30,
-            color: isCollapsed ? Color.fromARGB(255, 0, 72, 121) : Colors.white,
+            color: isCollapsed ? const Color.fromARGB(255, 0, 72, 121) : Colors.white,
           )),
     );
   }
@@ -408,16 +408,16 @@ class _FetchFollowingPosts_widgetState<T>
 
   tryAgainButton(context) {
     return TextButton(
-      child: const Text(
-        "Try again",
-        style: TextStyle(color: Colors.white),
-      ),
       style: TextButton.styleFrom(backgroundColor: Colors.pink[600]),
       onPressed: () {
         BlocProvider.of<FetchFollowingPostsBloc<T>>(context).add(
             List_FetchFollowingPosts_Event<T>(
                 widget.myFetchFollowingPostsFunc));
       },
+      child: const Text(
+        "Try again",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
@@ -437,16 +437,16 @@ class _FetchFollowingPosts_widgetState<T>
 
   loadMoreButton(context) {
     return TextButton(
-      child: const Text(
-        "Load more ",
-        style: TextStyle(color: Colors.white),
-      ),
       style: TextButton.styleFrom(backgroundColor: Colors.pink[600]),
       onPressed: () {
         BlocProvider.of<FetchFollowingPostsBloc<T>>(context).add(
             List_FetchFollowingPosts_Event<T>(
                 widget.myFetchFollowingPostsFunc));
       },
+      child: const Text(
+        "Load more ",
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 

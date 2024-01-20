@@ -10,7 +10,7 @@ abstract class SongsFetchEvent extends Equatable {
 class Songs_SearchFetch_Event extends SongsFetchEvent {
   final customSearch;
 
-  Songs_SearchFetch_Event(this.customSearch);
+  const Songs_SearchFetch_Event(this.customSearch);
 
   @override
   List<Object> get props => [customSearch];

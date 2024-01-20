@@ -82,7 +82,7 @@ class ProfileDisplayCardWidget extends StatelessWidget {
                                   onTap: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return FollowersScreen();
+                                      return const FollowersScreen();
                                     }));
                                   },
                                   child: ProfileFollowersCountWidget(
@@ -94,7 +94,7 @@ class ProfileDisplayCardWidget extends StatelessWidget {
                                   onTap: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return FollowingScreen();
+                                      return const FollowingScreen();
                                     }));
                                   },
                                   child: ProfileFollowersCountWidget(
@@ -131,13 +131,13 @@ class ProfileDisplayCardWidget extends StatelessWidget {
 
                   //
 
-                  : FollowUnfollowButtonWidget(),
+                  : const FollowUnfollowButtonWidget(),
 
               //@
               const SizedBox(width: 5),
 
               //@
-              ProfileFollowingListButton()
+              const ProfileFollowingListButton()
             ],
           ),
         ],

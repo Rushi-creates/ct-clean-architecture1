@@ -244,7 +244,7 @@ class MyPostsTopPostsPlaceHolder extends StatelessWidget {
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 255, 255, 255), // Grey background color
+            color: const Color.fromARGB(255, 255, 255, 255), // Grey background color
             borderRadius: BorderRadius.circular(8.0),
             boxShadow: [
               BoxShadow(
@@ -280,7 +280,7 @@ class MyPostsTopPostsPlaceHolder extends StatelessWidget {
                     width: 100, // Adjust the width as needed
                     height: 8, // Adjust the height as needed
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(
+                      color: const Color.fromARGB(
                           255, 243, 243, 243), // Grey background color
                       borderRadius: BorderRadius.circular(5.0),
                       // boxShadow: [

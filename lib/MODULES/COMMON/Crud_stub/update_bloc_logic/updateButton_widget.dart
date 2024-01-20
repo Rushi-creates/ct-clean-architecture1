@@ -11,7 +11,7 @@ class UpdateButton_widget<T> extends StatelessWidget {
   final buttonUi;
 
   const UpdateButton_widget(
-      {required this.myAddFunc, this.formKey, this.buttonUi});
+      {super.key, required this.myAddFunc, this.formKey, this.buttonUi});
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +48,14 @@ class UpdateButton_widget<T> extends StatelessWidget {
   update_Button_ui(context) {
     return GestureDetector(
         onTap: () async => update_FUNC(context),
-        child: buttonUi == null
-            ? TextButton(
-                child: Text(
+        child: buttonUi ?? TextButton(
+                style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
+                onPressed: null,
+                child: const Text(
                   "Update",
                   style: TextStyle(color: Colors.white),
                 ),
-                style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
-                onPressed: null,
-              )
-            : buttonUi);
+              ));
   }
 
 /* -------------------------------------------------------------------------- */

@@ -11,7 +11,7 @@ class SeriesFetchInitial extends SeriesFetchState {}
 
 class SeriesFetch_Success_State extends SeriesFetchState {
   final modelObjList;
-  SeriesFetch_Success_State(this.modelObjList);
+  const SeriesFetch_Success_State(this.modelObjList);
 
   @override
   List<Object> get props => [modelObjList];
@@ -20,7 +20,7 @@ class SeriesFetch_Success_State extends SeriesFetchState {
 class SeriesFetch_Error_State extends SeriesFetchState {
   final error;
 
-  SeriesFetch_Error_State(this.error);
+  const SeriesFetch_Error_State(this.error);
   @override
   List<Object> get props => [error];
 }

@@ -56,9 +56,9 @@ class ProfileRepo {
     var rawData = await DjangoHelper.instance
         .singleFetch(DjangoEndpoints.profile_isExists, jsonPk);
 
-    if (rawData == false)
+    if (rawData == false) {
       return false;
-    else if (rawData is Map<String, dynamic>) return Profile.fromMap(rawData);
+    } else if (rawData is Map<String, dynamic>) return Profile.fromMap(rawData);
   }
 
 /* -------------------------------------------------------------------------- */
@@ -106,20 +106,21 @@ class ProfileSpRepo {
   static final instance = ProfileSpRepo._();
 
   setProfile(value) async {
-    return await CacheHelper.set('profile', value);
+    return await SharedPreferencesHelper.set('profile', value);
   }
 
   Profile? getProfile() {
     // await not required in getModel
-    var jsonMap = CacheHelper.getModel('profile');
+    var jsonMap = SharedPreferencesHelper.getModel('profile');
 
-    if (jsonMap == null)
+    if (jsonMap == null) {
       return null;
-    else
+    } else {
       return Profile.fromJson(jsonMap);
+    }
   }
 
   removeProfile() async {
-    return await CacheHelper.remove('profile');
+    return await SharedPreferencesHelper.remove('profile');
   }
 }

@@ -125,7 +125,7 @@ class ProfileCustomCollapsedAppBarWidget extends StatelessWidget {
                     return const SettingScreen();
                   }));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.more_vert,
                   color: Color.fromARGB(255, 107, 107, 107),
                 ))

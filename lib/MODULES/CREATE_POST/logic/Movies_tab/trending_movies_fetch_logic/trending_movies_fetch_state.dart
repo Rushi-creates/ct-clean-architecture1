@@ -12,7 +12,7 @@ class TrendingMoviesFetchInitial extends TrendingMoviesFetchState {}
 class TrendingMoviesFetch_Success_State extends TrendingMoviesFetchState {
   final trendMovieList;
 
-  TrendingMoviesFetch_Success_State(this.trendMovieList);
+  const TrendingMoviesFetch_Success_State(this.trendMovieList);
 
   @override
   List<Object> get props => [trendMovieList];
@@ -21,7 +21,7 @@ class TrendingMoviesFetch_Success_State extends TrendingMoviesFetchState {
 class TrendingMoviesFetch_Error_State extends TrendingMoviesFetchState {
   final error;
 
-  TrendingMoviesFetch_Error_State(this.error);
+  const TrendingMoviesFetch_Error_State(this.error);
 
   @override
   List<Object> get props => [error];

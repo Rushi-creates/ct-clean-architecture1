@@ -100,21 +100,21 @@ class Movies_api_repo {
 /* -------------------------------------------------------------------------- */
 
 //Todo : while using sp , make sure to use await , kw , or it wont work
-// CacheHelper.get('UserAcc');
-// await CacheHelper.set('UserAcc');
-// await CacheHelper.remove('UserAcc');
+// SharedPreferencesHelper.get('UserAcc');
+// await SharedPreferencesHelper.set('UserAcc');
+// await SharedPreferencesHelper.remove('UserAcc');
 
 // class Movies_sp_repo {
 //   set_movies(value) async {
-//     return await CacheHelper.set('movies', value);
+//     return await SharedPreferencesHelper.set('movies', value);
 //   }
 
 //   //! do not use await in get
 //   get_movies(key) {
-//     return CacheHelper.get(key);
+//     return SharedPreferencesHelper.get(key);
 //   }
 
 //   remove_movies(key) async {
-//     return await CacheHelper.remove(key);
+//     return await SharedPreferencesHelper.remove(key);
 //   }
 // }

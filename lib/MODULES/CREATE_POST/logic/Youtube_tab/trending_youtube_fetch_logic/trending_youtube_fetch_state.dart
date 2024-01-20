@@ -12,7 +12,7 @@ class TrendingYoutubeFetchInitial extends TrendingYoutubeFetchState {}
 class TrendingYoutubeFetch_Success_State extends TrendingYoutubeFetchState {
   final trendYoutubeList;
 
-  TrendingYoutubeFetch_Success_State(this.trendYoutubeList);
+  const TrendingYoutubeFetch_Success_State(this.trendYoutubeList);
 
   @override
   List<Object> get props => [trendYoutubeList];
@@ -21,7 +21,7 @@ class TrendingYoutubeFetch_Success_State extends TrendingYoutubeFetchState {
 class TrendingYoutubeFetch_Error_State extends TrendingYoutubeFetchState {
   final error;
 
-  TrendingYoutubeFetch_Error_State(this.error);
+  const TrendingYoutubeFetch_Error_State(this.error);
 
   @override
   List<Object> get props => [error];

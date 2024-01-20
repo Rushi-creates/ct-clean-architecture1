@@ -12,7 +12,7 @@ class CreateButton_widget<T> extends StatelessWidget {
   final dynamic Function()? onSuccess;
 
   const CreateButton_widget(
-      {required this.myAddFunc, this.formKey, this.buttonUi, this.onSuccess});
+      {super.key, required this.myAddFunc, this.formKey, this.buttonUi, this.onSuccess});
   @override
   Widget build(BuildContext context) {
     return saveButton_STATES();
@@ -51,16 +51,14 @@ class CreateButton_widget<T> extends StatelessWidget {
   save_Button_ui(context) {
     return GestureDetector(
         onTap: () async => save_FUNC(context),
-        child: buttonUi == null
-            ? TextButton(
-                child: Text(
+        child: buttonUi ?? TextButton(
+                style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
+                onPressed: null,
+                child: const Text(
                   "Save",
                   style: TextStyle(color: Colors.white),
                 ),
-                style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
-                onPressed: null,
-              )
-            : buttonUi);
+              ));
   }
 
 /* -------------------------------------------------------------------------- */

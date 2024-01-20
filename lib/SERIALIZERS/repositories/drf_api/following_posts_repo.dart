@@ -100,12 +100,12 @@ class FollowingPostsRepo {
   // static final instance = FollowingPostsSpRepo._();
 
 //   setFollowingPosts(value) async {
-//    return await CacheHelper.set('followingPosts', value);
+//    return await SharedPreferencesHelper.set('followingPosts', value);
 //   }
 
 //    FollowingPosts? getFollowingPosts() {
 //   // await not required in getModel
-//     var jsonMap = CacheHelper.getModel('followingPosts');
+//     var jsonMap = SharedPreferencesHelper.getModel('followingPosts');
 
 //     if (jsonMap == null)
 //       return null;
@@ -114,6 +114,6 @@ class FollowingPostsRepo {
 //   }
 
 //   removeFollowingPosts() async {
-//    return await CacheHelper.remove('followingPosts');
+//    return await SharedPreferencesHelper.remove('followingPosts');
 //   }
 // }

@@ -33,9 +33,9 @@ class SeriesResults {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'id': this.id,
-      'name': this.name,
-      'poster_path': this.poster_path,
+      'id': id,
+      'name': name,
+      'poster_path': poster_path,
     };
   }
 }

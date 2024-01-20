@@ -11,7 +11,7 @@ class MoviesFetchInitial extends MoviesFetchState {}
 
 class MoviesFetch_Success_State extends MoviesFetchState {
   final modelObjList;
-  MoviesFetch_Success_State(this.modelObjList);
+  const MoviesFetch_Success_State(this.modelObjList);
 
   @override
   List<Object> get props => [modelObjList];
@@ -20,7 +20,7 @@ class MoviesFetch_Success_State extends MoviesFetchState {
 class MoviesFetch_Error_State extends MoviesFetchState {
   final error;
 
-  MoviesFetch_Error_State(this.error);
+  const MoviesFetch_Error_State(this.error);
   @override
   List<Object> get props => [error];
 }

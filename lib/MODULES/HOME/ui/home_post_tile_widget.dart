@@ -19,7 +19,7 @@ class HomePostTileWidget extends StatelessWidget {
     return GestureDetector(
         onTap: () => fetchListFunc(context),
         child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: Colors.black,
@@ -39,7 +39,7 @@ class HomePostTileWidget extends StatelessWidget {
               direction: Axis.horizontal,
               children: [
                 card2(),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 card1(context),
                 // isEven ? card2() : card1(context),
                 // SizedBox(width: 10),
@@ -128,8 +128,8 @@ class HomePostTileWidget extends StatelessWidget {
       // '"${post.lovedFact}"',
       overflow: TextOverflow.clip,
       maxLines: 2,
-      style: TextStyle(
-        color: const Color.fromARGB(255, 224, 224, 224),
+      style: const TextStyle(
+        color: Color.fromARGB(255, 224, 224, 224),
         fontWeight: FontWeight.normal,
         fontSize: 10,
       ),
@@ -174,7 +174,7 @@ class HomePostTileWidget extends StatelessWidget {
                 children: [
                   Text(
                     post.profile_username,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -182,8 +182,8 @@ class HomePostTileWidget extends StatelessWidget {
                   ),
                   Text(
                     post.profile_bio,
-                    style: TextStyle(
-                      color: const Color.fromARGB(255, 250, 250, 250),
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 250, 250, 250),
                       fontSize: 12,
                     ),
                   ),

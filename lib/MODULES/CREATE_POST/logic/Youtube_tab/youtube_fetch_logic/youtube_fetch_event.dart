@@ -10,7 +10,7 @@ abstract class YoutubeFetchEvent extends Equatable {
 class Youtube_SearchFetch_Event extends YoutubeFetchEvent {
   final customSearch;
 
-  Youtube_SearchFetch_Event(this.customSearch);
+  const Youtube_SearchFetch_Event(this.customSearch);
 
   @override
   List<Object> get props => [customSearch];

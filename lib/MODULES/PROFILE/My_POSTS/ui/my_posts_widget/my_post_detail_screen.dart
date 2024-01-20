@@ -6,7 +6,7 @@ class MyPostDetailScreen extends StatefulWidget {
   final imageUrl;
   final title;
   final description;
-  const MyPostDetailScreen({
+  const MyPostDetailScreen({super.key, 
     required this.title,
     required this.description,
     required this.imageUrl,
@@ -68,7 +68,7 @@ class _MyPostDetailScreenState extends State<MyPostDetailScreen> {
             padding: const EdgeInsets.only(left: 8.0, top: 10, bottom: 0.24),
             child: Text(
               widget.title,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color(0xff2E394A),
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class _MyPostDetailScreenState extends State<MyPostDetailScreen> {
             padding: const EdgeInsets.only(left: 8.0, top: 10, bottom: 0.24),
             child: Text(
               widget.description,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Color.fromARGB(255, 82, 89, 100),
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
@@ -104,7 +104,7 @@ class _MyPostDetailScreenState extends State<MyPostDetailScreen> {
       centerTitle: true,
       elevation: 0.0,
       leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -113,7 +113,7 @@ class _MyPostDetailScreenState extends State<MyPostDetailScreen> {
           }),
       // automaticallyImplyLeading: true,  //removes default back arrow on appbar
 
-      title: Text(
+      title: const Text(
         'About', //give here appBar title
         style: TextStyle(color: Colors.black
             // fontWeight: FontWeight.bold

@@ -13,7 +13,7 @@ class MoviesFetchBloc extends Bloc<MoviesFetchEvent, MoviesFetchState> {
 /*                             //@ repo class obj                             */
 /* -------------------------------------------------------------------------- */
 
-    Movies_api_repo movies_api_repo = Movies_api_repo();
+    Movies_api_repo moviesApiRepo = Movies_api_repo();
 
     on<Movies_SearchFetch_Event>((event, emit) async {
       print('movies fetch called');
@@ -22,7 +22,7 @@ class MoviesFetchBloc extends Bloc<MoviesFetchEvent, MoviesFetchState> {
         // await Future.delayed(Duration(milliseconds: 800));
 
         final moreFetchedList =
-            await movies_api_repo.fetchProp(event.customSearch);
+            await moviesApiRepo.fetchProp(event.customSearch);
 
         print(moreFetchedList);
         // final List moreFetchedList =

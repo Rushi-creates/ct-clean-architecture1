@@ -8,6 +8,7 @@ abstract class FetchFollowingPostsState<T> extends Equatable {
 }
 
 class FetchFollowingPostsInitial<T> extends FetchFollowingPostsState<T> {
+  @override
   final List fetchFollowingPostsList;
   const FetchFollowingPostsInitial({required this.fetchFollowingPostsList})
       : super(fetchFollowingPostsList: fetchFollowingPostsList);
@@ -15,6 +16,7 @@ class FetchFollowingPostsInitial<T> extends FetchFollowingPostsState<T> {
 
 class FetchFollowingPostsList_Loading_State<T>
     extends FetchFollowingPostsState<T> {
+  @override
   final List fetchFollowingPostsList;
   const FetchFollowingPostsList_Loading_State(
       {required this.fetchFollowingPostsList})
@@ -23,6 +25,7 @@ class FetchFollowingPostsList_Loading_State<T>
 
 class FetchFollowingPostsList_Loaded_State<T>
     extends FetchFollowingPostsState<T> {
+  @override
   final List fetchFollowingPostsList;
   const FetchFollowingPostsList_Loaded_State(
       {required this.fetchFollowingPostsList})
@@ -31,6 +34,7 @@ class FetchFollowingPostsList_Loaded_State<T>
 
 class FetchFollowingPostsList_LoadedEmpty_State<T>
     extends FetchFollowingPostsState<T> {
+  @override
   final List fetchFollowingPostsList;
   const FetchFollowingPostsList_LoadedEmpty_State(
       {required this.fetchFollowingPostsList})
@@ -39,6 +43,7 @@ class FetchFollowingPostsList_LoadedEmpty_State<T>
 
 class FetchFollowingPostsList_Error_State<T>
     extends FetchFollowingPostsState<T> {
+  @override
   final List fetchFollowingPostsList;
   final error;
   const FetchFollowingPostsList_Error_State(

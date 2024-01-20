@@ -89,21 +89,21 @@ class Yt_api_repo {
 /* -------------------------------------------------------------------------- */
 
 //Todo : while using sp , make sure to use await , kw , or it wont work
-// CacheHelper.get('UserAcc');
-// await CacheHelper.set('UserAcc');
-// await CacheHelper.remove('UserAcc');
+// SharedPreferencesHelper.get('UserAcc');
+// await SharedPreferencesHelper.set('UserAcc');
+// await SharedPreferencesHelper.remove('UserAcc');
 
 // class Yt_sp_repo {
 //   set_yt(value) async {
-//     return await CacheHelper.set('yt', value);
+//     return await SharedPreferencesHelper.set('yt', value);
 //   }
 
 //   //! do not use await in get
 //   get_yt() {
-//     return CacheHelper.get('yt');
+//     return SharedPreferencesHelper.get('yt');
 //   }
 
 //   remove_yt() async {
-//     return await CacheHelper.remove('yt');
+//     return await SharedPreferencesHelper.remove('yt');
 //   }
 // }
