@@ -244,13 +244,15 @@ class MyPostsTopPostsPlaceHolder extends StatelessWidget {
         child: Container(
           height: 50,
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 255, 255, 255), // Grey background color
+            color: const Color.fromARGB(
+                255, 255, 255, 255), // Grey background color
             borderRadius: BorderRadius.circular(8.0),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
+                color:
+                    const Color.fromARGB(255, 238, 238, 238).withOpacity(0.5),
                 blurRadius: 1,
-                offset: const Offset(0, 1),
+                offset: const Offset(1, 1),
               ),
             ],
           ),
@@ -264,7 +266,7 @@ class MyPostsTopPostsPlaceHolder extends StatelessWidget {
                   height: 50, // Adjust the height as needed
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.0),
-                    color: const Color.fromARGB(255, 243, 243, 243),
+                    color: const Color.fromARGB(255, 245, 245, 245),
                     image: DecorationImage(image: AssetImage(placeHolderImage)),
                   ),
 

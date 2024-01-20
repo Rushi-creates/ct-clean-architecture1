@@ -21,14 +21,15 @@ class FetchFollowingPostsBloc<T>
 /* -------------------------------------------------------------------------- */
 
   FetchFollowingPostsBloc()
-      : super(FetchFollowingPostsInitial<T>(fetchFollowingPostsList: const [])) {
+      : super(
+            FetchFollowingPostsInitial<T>(fetchFollowingPostsList: const [])) {
     Songs_api_repo songsApiRepo = Songs_api_repo();
     Yt_api_repo ytApiRepo = Yt_api_repo();
     Movies_api_repo moviesApiRepo = Movies_api_repo();
     Series_api_repo seriesApiRepo = Series_api_repo();
 
 /* -------------------------------------------------------------------------- */
-/*                        //@ FetchFollowingPosts + pagination                              */
+/*                        //@ FetchFollowingPosts + pagination                */
 /* -------------------------------------------------------------------------- */
 
     on<List_FetchFollowingPosts_Event<T>>((event, emit) async {
@@ -46,11 +47,13 @@ class FetchFollowingPostsBloc<T>
 
         // if nothing more is to fetchFollowingPosts
         if (moreListFetchFollowingPostsed.isEmpty) {
+          print('list is empty');
           emit(FetchFollowingPostsList_LoadedEmpty_State<T>(
               fetchFollowingPostsList: state.fetchFollowingPostsList));
 
           // adding more fetchFollowingPostsed to final list
         } else if (moreListFetchFollowingPostsed.isNotEmpty) {
+          print('list is not empty');
 /* -------------------------------------------------------------------------- */
 /*                           // @ fetch single trend                          */
 /* -------------------------------------------------------------------------- */
@@ -101,12 +104,12 @@ class FetchFollowingPostsBloc<T>
 /* -------------------------------------------------------------------------- */
 /*                                     //@                                    */
 /* -------------------------------------------------------------------------- */
-          state.fetchFollowingPostsList.addAll(myfinalDisplayList);
+          state.fetchFollowingPostsList.toList().addAll(myfinalDisplayList);
 
-          FriendsPostsCache.o.setPosts(state.fetchFollowingPostsList); //@
+          FriendsPostsCache.o.setPosts(myfinalDisplayList); //@
 
           emit(FetchFollowingPostsList_Loaded_State<T>(
-              fetchFollowingPostsList: state.fetchFollowingPostsList));
+              fetchFollowingPostsList: myfinalDisplayList));
         }
 
         // catch error
@@ -125,7 +128,7 @@ class FetchFollowingPostsBloc<T>
 
     on<List_Refresh_Event<T>>((event, emit) async {
       counter = 0;
-      state.fetchFollowingPostsList.clear();
+      state.fetchFollowingPostsList.toList().clear();
     });
   }
 }

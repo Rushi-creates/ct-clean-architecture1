@@ -23,6 +23,8 @@ class FollowingPostsRepo {
         pageNum: counter,
         customSearch: '');
 
+    print(rawData);
+
     return MyPost.fromMapList(rawData);
   }
 

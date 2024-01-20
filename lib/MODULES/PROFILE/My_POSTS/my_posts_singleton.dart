@@ -20,6 +20,7 @@ class MyPostSingleton {
   List myPostsList = [];
   void setMyPostsList(List value) {
     myPostsList = value;
+    print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&$value');
 
     distributeList();
   }

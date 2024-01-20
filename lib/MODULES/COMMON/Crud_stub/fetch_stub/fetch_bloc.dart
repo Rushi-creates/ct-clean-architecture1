@@ -31,12 +31,20 @@ class FetchBloc<T> extends Bloc<FetchEvent<T>, FetchState<T>> {
 
         // if nothing more is to fetch
         if (moreListFetched.isEmpty) {
+          print('more fetch list is empty from crud fetch');
           emit(FetchList_LoadedEmpty_State<T>(fetchList: state.fetchList));
 
           // adding more fetched to final list
         } else if (moreListFetched.isNotEmpty) {
-          state.fetchList.addAll(moreListFetched);
-          emit(FetchList_Loaded_State<T>(fetchList: state.fetchList));
+          print('more fetch list is NOT empty from crud fetch');
+
+          state.fetchList.toList().addAll(moreListFetched);
+          print(moreListFetched);
+          print(state.fetchList);
+          List updatedList = List.from(state.fetchList)
+            ..addAll(moreListFetched);
+
+          emit(FetchList_Loaded_State<T>(fetchList: updatedList));
         }
 
         // catch error
@@ -54,7 +62,7 @@ class FetchBloc<T> extends Bloc<FetchEvent<T>, FetchState<T>> {
 
     on<List_Refresh_Event<T>>((event, emit) async {
       counter = 0;
-      state.fetchList.clear();
+      state.fetchList.toList().clear();
     });
   }
 }

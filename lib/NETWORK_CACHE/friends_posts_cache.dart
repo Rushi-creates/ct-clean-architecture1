@@ -23,6 +23,7 @@ class FriendsPostsCache {
 
   void setPosts(List value) async {
     _networkList = value;
+    print('*********&*&********$value');
     await _convertToNewModel();
   }
 

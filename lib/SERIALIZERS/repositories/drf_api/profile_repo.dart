@@ -35,10 +35,13 @@ class ProfileRepo {
   // }
 
   filterFetchByUsername(int counter, searchText) async {
+    print('filterfetch by username');
     var rawData = await DjangoHelper.instance.filterFetch(
         url: DjangoEndpoints.profile_getAll,
         pageNum: counter,
         customSearch: '&username=$searchText');
+
+    print(rawData);
 
     return Profile.fromMapList(rawData);
   }
